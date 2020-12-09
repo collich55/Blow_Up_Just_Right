@@ -53,9 +53,9 @@ Game.prototype.addPost = function addPost() {
   let second_x;
 
   if (first_x > 1200) {
-    second_x = first_x - ((300 * Math.random()) + 5)
+    second_x = first_x - ((300 * Math.random()) + 30)
   } else {
-    second_x = first_x + ((300 * Math.random()) + 5)
+    second_x = first_x + ((300 * Math.random()) + 30)
   }
 
 
@@ -81,7 +81,7 @@ Game.prototype.addPost = function addPost() {
 
   this.add(post2);
 
-  return post1;
+  return [post1, post2];
 };
 
 
@@ -104,9 +104,14 @@ Game.prototype.checkCollisions = function checkCollisions() {
       const obj1 = allObjects[i];
       const obj2 = allObjects[j];
 
-      if (obj1.isCollidedWith(obj2) && obj2 instanceof Ball) {
+      if (obj1.isCollidedWith(obj2) && obj2 instanceof Ball && (!(obj1 instanceof Ball)) ) {
+        debugger
+        // allObjects[2].show = true;
+        // allObjects[3].show = true;
         const collision = obj1.collideWith(obj2);
-        if (collision) return;
+        if (collision) {
+          return;
+        } 
       }
     }
   }
@@ -116,6 +121,24 @@ Game.prototype.draw = function draw(ctx) {
   ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
   ctx.fillStyle = Game.BG_COLOR;
   ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
+
+  ctx.font = "30px Comic Sans MS";
+  ctx.fillStyle = "black";
+  ctx.fillText("right/left = a/d", 50, 50);
+  ctx.fillText("bigger/smaller = w/s", 50, 100);
+  ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
+  ctx.fillText("smaller (fine tuning) = x", 50, 200);
+  ctx.fillText("see poles (cheating) = l", 50, 250);
+
+  // ctx.font = "30px Verdana";
+  // // Create gradient
+  // var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+  // gradient.addColorStop("0", " magenta");
+  // gradient.addColorStop("0.5", "blue");
+  // gradient.addColorStop("1.0", "red");
+  // // Fill with gradient
+  // ctx.fillStyle = gradient;
+  // ctx.fillText("Big smile!", 10, 90);
 
   this.allObjects().forEach(function(object) {
     object.draw(ctx);

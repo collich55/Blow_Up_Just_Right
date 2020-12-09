@@ -1,3 +1,5 @@
+const Post = require("./goal_post");
+
 function GameView(game, ctx) {
   this.ctx = ctx;
   this.game = game;
@@ -5,6 +7,7 @@ function GameView(game, ctx) {
   this.floor = this.game.addFloor();
   // this.imageData1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
   this.post = this.game.addPost();
+  
 }
 
 GameView.ADJUST = {
@@ -25,6 +28,9 @@ GameView.GRAVITY = {
   s: -1
 };
 
+GameView.SHOW = {
+  l: -1
+};
 
 
 // setTimeout(function () {
@@ -35,19 +41,31 @@ GameView.GRAVITY = {
 
 GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   const ball = this.ball;
+  const post = this.post;
 
   Object.keys(GameView.ADJUST).forEach(function (k) {
     const adj = GameView.ADJUST[k];
     key(k, function () { ball.changeSize(adj); });
+    setTimeout(function () {
+    // return the canvas to the state right after we drew the blue rect
+    post[0].changeShow(); 
+    post[1].changeShow();
+  }, 1000);
   });
 
   Object.keys(GameView.GRAVITY).forEach(function (k) {
     key("space", function () { ball.startGravity(); });
+    
   });
 
   Object.keys(GameView.MOVE).forEach(function (k) {
     const adj = GameView.MOVE[k];
     key(k, function () { ball.moveSideways(adj); });
+  });  
+
+  Object.keys(GameView.SHOW).forEach(function (k) {
+    // const adj = GameView.SHOW[k];
+    key("l", function () { post[0].changeShow(); post[1].changeShow(); });
   });  
 
 };
@@ -66,6 +84,7 @@ GameView.prototype.animate = function animate(time) {
   this.game.step(timeDelta);
   this.game.draw(this.ctx);
   this.lastTime = time;
+  
 
   requestAnimationFrame(this.animate.bind(this));
 };

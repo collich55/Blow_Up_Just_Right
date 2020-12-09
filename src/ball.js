@@ -10,6 +10,7 @@ function Ball(options) {
 }
 
 Ball.prototype.collideWith = function collideWith(otherObject) {
+  debugger
   
 };
 
@@ -19,6 +20,12 @@ Ball.prototype.changeSize = function changeSize(adj) {
 };
 
 Ball.prototype.startGravity = function startGravity() {
+
+ 
+    // return the canvas to the state right after we drew the blue rect
+    this.game.ball[2].show = true;
+    this.game.ball[3].show = true;
+  
   this.moving = true;
 };
 
