@@ -52,15 +52,51 @@ Ball.prototype.draw = function draw(ctx) {
 
 
   // var pat = ctx.createPattern(img, "repeat" );
-  ctx.fillStyle = "red"
+  let img = new Image();
+  img.src = 'https://www.c4dcafe.com/ipb/uploads/monthly_2017_12/5a20a56f2c5c3_PhotoshopCCScreenSnapz002.jpg.5022d111be1a7444a200e9e5c9dccea0.jpg';
+  
+  
+
+  
 
 
+  // ctx.beginPath();
+  // ctx.arc(
+  //   this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
+  // );
+  // ctx.fill();
+
+
+  ctx.save();
   ctx.beginPath();
   ctx.arc(
     this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
   );
-  ctx.fill();
+  ctx.clip();
+  
+  
+  ctx.drawImage(img, this.pos[0]-(this.radius) , this.pos[1]-(this.radius), this.radius*2, this.radius*2);
+  ctx.restore();
+  
+
+  // ctx.beginPath();
+  // ctx.arc(
+  //   this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
+  // );
+  
+  // ctx.clip();
+  // ctx.restore();
+
+  
+
+
+  // ctx.fillStyle = "red"
+  // ctx.fillRect(this.pos[0]-this.radius, this.pos[1]-this.radius, this.radius*2, this.radius*2);
+
 };
+
+
+
 
 Ball.prototype.isCollidedWith = function isCollidedWith(otherObject) {
   const centerDist = Util.dist(this.pos, otherObject.pos);

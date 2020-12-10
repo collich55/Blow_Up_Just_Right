@@ -9,7 +9,8 @@ Floor.prototype.draw = function draw(ctx) {
     ctx.beginPath();
     ctx.moveTo(0, 700);
     ctx.lineTo(1440, 700);
-    ctx.stroke();
+    
+    // ctx.stroke();
 };
 
 
@@ -39,7 +40,8 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
             if (this.game.ball[0].pos[0] < lower || this.game.ball[0].pos[0] > higher) {
                 alert("You landed outside of the goal!")
             } else {
-                alert("You filled " + (100 - (((score) / total) * 100)) + "% of the space")
+                let num = ((100 - (((score) / total) * 100)))
+                alert("You got " + Math.ceil(num) + " points!")
             }
         }
         

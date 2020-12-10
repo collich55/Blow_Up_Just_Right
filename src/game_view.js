@@ -13,7 +13,9 @@ function GameView(game, ctx) {
 GameView.ADJUST = {
   w: 5,
   s: -5,
-  x: -1
+  x: -1,
+  q: 1,
+  n: 1
 };
 
 GameView.MOVE = {
@@ -32,6 +34,10 @@ GameView.SHOW = {
   l: -1
 };
 
+GameView.RESTART = {
+  l: -1
+};
+
 
 // setTimeout(function () {
 //   this.ctx.putImageData(this.imageData1, 0, 0);
@@ -47,7 +53,6 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
     const adj = GameView.ADJUST[k];
     key(k, function () { ball.changeSize(adj); });
     setTimeout(function () {
-    // return the canvas to the state right after we drew the blue rect
     post[0].changeShow(); 
     post[1].changeShow();
   }, 1000);
@@ -65,7 +70,26 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
   Object.keys(GameView.SHOW).forEach(function (k) {
     // const adj = GameView.SHOW[k];
-    key("l", function () { post[0].changeShow(); post[1].changeShow(); });
+    key("l", function () {
+      setTimeout(function () {
+        post[0].changeShow();
+        post[1].changeShow();
+      }, 1); 
+    setTimeout(function () {
+      post[0].changeShow();
+      post[1].changeShow();
+    }, 1000);
+    });
+  }); 
+
+  Object.keys(GameView.RESTART).forEach(function (k) {
+    // const adj = GameView.SHOW[k];
+    debugger;
+    key("p", function () {
+      post[0].changePosts(); setTimeout(function () {
+        post[0].changeShow();
+        post[1].changeShow();
+      }, 1000) });
   });  
 
 };

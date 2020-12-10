@@ -51,11 +51,19 @@ Game.prototype.addPost = function addPost() {
 
   const first_x = this.randomX();
   let second_x;
+  let third_x;
+  let fourth_x;
 
   if (first_x > 1200) {
     second_x = first_x - ((300 * Math.random()) + 30)
+    third_x = first_x - 20;
+    fourth_x = second_x + 20;
+
   } else {
     second_x = first_x + ((300 * Math.random()) + 30)
+    third_x = first_x - 20;
+    fourth_x = second_x + 20;
+
   }
 
 
@@ -81,7 +89,29 @@ Game.prototype.addPost = function addPost() {
 
   this.add(post2);
 
-  return [post1, post2];
+  const post3 = new Post({
+
+    pos: [third_x, 500],
+    game: this,
+    radius: 0,
+    show: true
+
+  });
+
+  this.add(post3);
+
+  const post4 = new Post({
+
+    pos: [fourth_x, 500],
+    game: this,
+    radius: 0,
+    show: true
+
+  });
+
+  this.add(post4);
+
+  return [post1, post2, post3, post4];
 };
 
 
@@ -122,13 +152,32 @@ Game.prototype.draw = function draw(ctx) {
   ctx.fillStyle = Game.BG_COLOR;
   ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
+
+ 
+  let img = new Image();
+  img.src = 'https://img.freepik.com/free-photo/sand_74190-171.jpg?size=626&ext=jpg';
+  
+  ctx.drawImage(img, 0, 700);
+  ctx.drawImage(img, 500, 700);
+  ctx.drawImage(img, 1000, 700);
+    // ctx.beginPath();
+    // ctx.moveTo(30, 96);
+    // ctx.lineTo(70, 66);
+    // ctx.lineTo(103, 76);
+    // ctx.lineTo(170, 15);
+    // ctx.stroke();
+
+  
+  
   ctx.font = "30px Comic Sans MS";
   ctx.fillStyle = "black";
   ctx.fillText("right/left = a/d", 50, 50);
   ctx.fillText("bigger/smaller = w/s", 50, 100);
   ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
-  ctx.fillText("smaller (fine tuning) = x", 50, 200);
-  ctx.fillText("see poles (cheating) = l", 50, 250);
+  ctx.fillText("larger/smaller (fine tuning) = q/x", 50, 200);
+  ctx.fillText("show poles again (cheating) = l", 50, 250);
+  ctx.fillText("new poles = p", 50, 300);
+  
 
   // ctx.font = "30px Verdana";
   // // Create gradient
