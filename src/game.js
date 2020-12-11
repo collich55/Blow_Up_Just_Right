@@ -171,12 +171,12 @@ Game.prototype.draw = function draw(ctx) {
   
   ctx.font = "30px Comic Sans MS";
   ctx.fillStyle = "black";
-  ctx.fillText("right/left = a/d", 50, 50);
-  ctx.fillText("bigger/smaller = w/s", 50, 100);
-  ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
-  ctx.fillText("larger/smaller (fine tuning) = q/x", 50, 200);
-  ctx.fillText("show poles again (cheating) = l", 50, 250);
-  ctx.fillText("new poles = p", 50, 300);
+  ctx.fillText("Click and Hold to Inflate Beach Ball Wherever You Click", 50, 50);
+  ctx.fillText("Try to Land between Posts. Larger Ball Gives a Bigger Score!", 50, 100);
+  // ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
+  // ctx.fillText("larger/smaller (fine tuning) = q/x", 50, 200);
+  // ctx.fillText("show poles again (cheating) = l", 50, 250);
+  // ctx.fillText("new poles = p", 50, 300);
   
 
   // ctx.font = "30px Verdana";

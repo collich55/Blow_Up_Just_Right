@@ -16,7 +16,12 @@ Ball.prototype.collideWith = function collideWith(otherObject) {
 
 Ball.prototype.changeSize = function changeSize(adj) {
   // this.moving = true;
-  this.radius += adj;
+ 
+  if (this.radius + adj > 0 || adj > 0) {
+    this.radius += adj;
+   
+  }
+  
 };
 
 Ball.prototype.startGravity = function startGravity() {
@@ -27,6 +32,22 @@ Ball.prototype.startGravity = function startGravity() {
     this.game.ball[3].show = true;
   
   this.moving = true;
+};
+
+
+Ball.prototype.inflate = function inflate(pressHoldEvent) {
+
+  //if (key.isPressed("i")) {
+    
+  //}
+  
+
+  // while (key.isPressed("i")) {
+    // this.pos[0] = dimX
+    this.radius += 3;
+  // }
+  // return the canvas to the state right after we drew the blue rect
+  
 };
 
 
