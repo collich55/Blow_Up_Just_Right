@@ -3,13 +3,24 @@ const Util = require("./util");
 function Floor(options) {
     this.pos = options.pos;
     this.game = options.game;
+    // this.ctx = this.game.ctx;
+    this.message = false;
+    this.score = 0;
 }
 
 Floor.prototype.draw = function draw(ctx) {
-    // ctx.beginPath();
-    // ctx.moveTo(0, 700);
-    // ctx.lineTo(1440, 700);
-    // ctx.stroke();
+    
+    // if (this.message) {
+    //     // let num = ((100 - (((score) / total) * 100)))
+    //     this.ctx.font = "30px Comic Sans MS";
+    //     this.ctx.fillStyle = "black";
+    //     this.ctx.fillText("Will this work????", 500, 500);
+    // }
+
+    // setTimeout(function () {
+    //     this.message = false;
+    // }, 3000)
+    
 };
 
 
@@ -40,9 +51,12 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
                 alert("You landed outside of the goal!")
                 // Floor.flashyText();
             } else {
+                // this.message = true;
+                // Floor.draw()
                 let num = ((100 - (((score) / total) * 100)))
-                alert("You got " + Math.ceil(num) + " points!")
+                alert("You got " + Math.ceil(num) + " points!");
                 // console.log(this.game);
+                
             }
         }
         

@@ -24,6 +24,11 @@ GameView.MOVE = {
 };
 
 
+// setTimeout(function () {
+//   this.message = false;
+// }, 3000);
+
+
 
 
 GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
@@ -42,7 +47,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
 
   key("space", function () { ball.startGravity(); });
-  
+
 //------------------------------------------------------------------
 //code snippit in dashed lines from https://www.kirupa.com/html5/press_and_hold.htm by Kirupa
   // let item = document.querySelector("#item");
@@ -137,6 +142,14 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
       post[1].changeShow();
     }, 1000) 
   });
+
+  // if (this.game.ball[1].message === true) {
+  //   setTimeout(function () {
+  //     this.game.ball[1].message = false
+  //   }, 3000)
+  // }
+
+  
  
 };
 
@@ -150,6 +163,8 @@ GameView.prototype.start = function start() {
 
 GameView.prototype.animate = function animate(time) {
   const timeDelta = time - this.lastTime;
+
+  
 
   this.game.step(timeDelta);
   this.game.draw(this.ctx);

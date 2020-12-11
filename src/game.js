@@ -3,7 +3,8 @@ const Floor = require("./floor");
 const Post = require("./goal_post");
 const Util = require("./util");
 
-function Game() {
+function Game(ctx) {
+  this.ctx = ctx;
   this.ball = [];
 }
 
@@ -14,7 +15,6 @@ Game.DIM_Y = innerHeight;
 Game.prototype.add = function add(object) {
   this.ball.push(object);
 };
-
 
 Game.prototype.addBall = function addBall() {
   const ball = new Ball({
@@ -31,14 +31,14 @@ Game.prototype.addBall = function addBall() {
   return ball;
 };
 
-
-
 Game.prototype.addFloor = function addFloor() {
   const floor = new Floor({
 
     pos: [720, 711],
     game: this,
-    radius: 0
+    radius: 0,
+    ctx: this.ctx
+
 
   });
 
@@ -72,7 +72,8 @@ Game.prototype.addPost = function addPost() {
     pos: [first_x, 500],
     game: this,
     radius: 0,
-    show: true
+    show: true,
+    ctx: this.ctx
 
   });
 
@@ -83,7 +84,8 @@ Game.prototype.addPost = function addPost() {
     pos: [second_x, 500],
     game: this,
     radius: 0,
-    show: true
+    show: true,
+    ctx: this.ctx
 
   });
 
@@ -94,7 +96,8 @@ Game.prototype.addPost = function addPost() {
     pos: [third_x, 500],
     game: this,
     radius: 0,
-    show: true
+    show: true,
+    ctx: this.ctx
 
   });
 
@@ -105,7 +108,8 @@ Game.prototype.addPost = function addPost() {
     pos: [fourth_x, 500],
     game: this,
     radius: 0,
-    show: true
+    show: true,
+    ctx: this.ctx
 
   });
 
@@ -126,18 +130,14 @@ Game.prototype.allObjects = function allObjects() {
 
 Game.prototype.checkCollisions = function checkCollisions() {
   let allObjects = this.allObjects();
-  // allObjects = allObjects.filter(obj => obj instanceof Ball)
-
 
   for (let i = 0; i < allObjects.length; i++) {
     for (let j = 0; j < allObjects.length; j++) {
+
       const obj1 = allObjects[i];
       const obj2 = allObjects[j];
 
       if (obj1.isCollidedWith(obj2) && obj2 instanceof Ball && (!(obj1 instanceof Ball)) ) {
-        
-        // allObjects[2].show = true;
-        // allObjects[3].show = true;
         const collision = obj1.collideWith(obj2);
         if (collision) {
           return;
@@ -152,30 +152,22 @@ Game.prototype.draw = function draw(ctx) {
   ctx.fillStyle = Game.BG_COLOR;
   ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
-
- 
   let img = new Image();
   img.src = 'https://img.freepik.com/free-photo/sand_74190-171.jpg?size=626&ext=jpg';
   
   ctx.drawImage(img, 0, 700);
   ctx.drawImage(img, 500, 700);
   ctx.drawImage(img, 1000, 700);
-    // ctx.beginPath();
-    // ctx.moveTo(30, 96);
-    // ctx.lineTo(70, 66);
-    // ctx.lineTo(103, 76);
-    // ctx.lineTo(170, 15);
-    // ctx.stroke();
 
-  
-  
+  // debugger
+
   ctx.font = "30px Comic Sans MS";
   ctx.fillStyle = "black";
   ctx.fillText("Click and Hold to Inflate Beach Ball Wherever You Click", 50, 50);
   ctx.fillText("Try to Land between Posts. Larger Ball Gives a Bigger Score!", 50, 100);
   // ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
   // ctx.fillText("larger/smaller (fine tuning) = q/x", 50, 200);
-  ctx.fillText("Show Poles Again (Cheating) = l", 50, 150);
+  ctx.fillText("Show Poles Again (cheating) = l", 50, 150);
   ctx.fillText("New Poles = p", 50, 200);
 
   this.allObjects().forEach(function(object) {

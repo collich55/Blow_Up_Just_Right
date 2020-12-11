@@ -41,7 +41,7 @@ Ball.prototype.moveSideways = function moveSideways(adj) {
 Ball.prototype.draw = function draw(ctx) {
 
   let img = new Image();
-  img.src = 'https://www.c4dcafe.com/ipb/uploads/monthly_2017_12/5a20a56f2c5c3_PhotoshopCCScreenSnapz002.jpg.5022d111be1a7444a200e9e5c9dccea0.jpg';
+  img.src = './beach-ball.jpg';
 
   ctx.save();
   ctx.beginPath();
@@ -52,7 +52,7 @@ Ball.prototype.draw = function draw(ctx) {
   ctx.drawImage(img, this.pos[0]-(this.radius) , this.pos[1]-(this.radius), this.radius*2, this.radius*2);
   ctx.restore();
 
-  //plain red ball:
+  // plain red ball:
   // ctx.fillStyle = "red"
   // ctx.fillRect(this.pos[0]-this.radius, this.pos[1]-this.radius, this.radius*2, this.radius*2);
 
