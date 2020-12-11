@@ -5,9 +5,7 @@ function GameView(game, ctx) {
   this.game = game;
   this.ball = this.game.addBall();
   this.floor = this.game.addFloor();
-  // this.imageData1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
   this.post = this.game.addPost();
-  
 }
 
 GameView.ADJUST = {
@@ -26,27 +24,6 @@ GameView.MOVE = {
 };
 
 
-GameView.GRAVITY = {
-  s: -1
-};
-
-GameView.SHOW = {
-  l: -1
-};
-
-GameView.RESTART = {
-  l: -1
-};
-
-GameView.HOLD = {
-  s: -1
-};
-
-
-// setTimeout(function () {
-//   this.ctx.putImageData(this.imageData1, 0, 0);
-// }, 1000);
-
 
 
 GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
@@ -56,79 +33,16 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   Object.keys(GameView.ADJUST).forEach(function (k) {
     const adj = GameView.ADJUST[k];
     key(k, function () { ball.changeSize(adj); });
-    setTimeout(function () {
-    post[0].changeShow(); 
+  });
+
+  setTimeout(function () {
+    post[0].changeShow();
     post[1].changeShow();
   }, 1000);
-  });
 
-  Object.keys(GameView.GRAVITY).forEach(function (k) {
-    key("space", function () { ball.startGravity(); });
-    
-  });
 
-  document.addEventListener('keydown', function (event) {
-    if (event.key == 'i') {
-    // while (key.isPressed("i")) {
-      ball.inflate();
-    }
-    // }
-  });
-
-  // let moused = false;
-
-  // document.addEventListener('keyup', function (event) {
-    
-  //   if (event.key == 'i') {
-  //     ball.startGravity();
-  //   }
-  // });
-
+  key("space", function () { ball.startGravity(); });
   
-
-  // window.addEventListener('mousedown', function () {
-
-  //   moused = true;
-
-  //   setTimeout(function () {
-  //     if (moused === true) {
-  //       ball.inflate();
-  //     }
-  //   }, 2);
-    
-    
-    
-  // });
-
- 
-
-  // window.addEventListener('mouseup', function () {
-  //   moused = false
-  //   ball.startGravity();
-    
-  // });
-
-
-  // let mouseIsDown = false;
-  // let idTimeout;
-
-  // window.addEventListener('mousedown', function (event) {
-  //   console.log("event:")
-  //   console.log(event)
-  //   const dimX = event.offsetX
-  //   // mouseIsDown = true;
-    
-  //     // setTimeout(function () {
-  //     //   if (mouseIsDown) {
-  //         // ball.inflate(dimX);
-  //     //   }
-  //     // }, 200);
-
-  //   ball.inflate(dimX);
-
-
-    
-  // });
 //------------------------------------------------------------------
 //code snippit in dashed lines from https://www.kirupa.com/html5/press_and_hold.htm by Kirupa
   // let item = document.querySelector("#item");
@@ -195,57 +109,35 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   }
   //------------------------------------------------------------------------
 
-  // window.addEventListener("pressHold", ball.inflate(dimX), false);
-  //  window.addEventListener("pressHold", function(event) {
-
-  //    const dimX = event.offsetX
-  //    // mouseIsDown = true;
-  //    // ball.inflate();
-  //    // idTimeout = setTimeout(function () {
-  //    // if (mouseIsDown) {
-
-  //    ball.inflate(dimX);
-    
-  //  });
-
-  // window.addEventListener('mouseup', function () {
-  //   // clearTimeout(idTimeout);
-  //   // mouseIsDown = false;
-  //   // ball.startGravity();
-  // });
-
-  // if (key.isPressed("o")) {
-  //   "o", function () { alert('o key is pressed, can ya believe it!?'); }
-
+  
   Object.keys(GameView.MOVE).forEach(function (k) {
     const adj = GameView.MOVE[k];
     key(k, function () { ball.moveSideways(adj); });
   });  
 
-  Object.keys(GameView.SHOW).forEach(function (k) {
-    // const adj = GameView.SHOW[k];
-    key("l", function () {
-      setTimeout(function () {
-        post[0].changeShow();
-        post[1].changeShow();
-      }, 1); 
+  key("l", function () {
+    
+  post[0].changeShow();
+  post[1].changeShow();
+    
+  setTimeout(function () {
+    post[0].changeShow();
+    post[1].changeShow();
+  }, 1000);
+
+  });
+
+  
+  key("p", function () {
+
+    post[0].changePosts(); 
+
     setTimeout(function () {
       post[0].changeShow();
       post[1].changeShow();
-    }, 1000);
-    });
-  }); 
-
-  Object.keys(GameView.RESTART).forEach(function (k) {
-    // const adj = GameView.SHOW[k];
-    debugger;
-    key("p", function () {
-      post[0].changePosts(); setTimeout(function () {
-        post[0].changeShow();
-        post[1].changeShow();
-      }, 1000) });
-  });  
-
+    }, 1000) 
+  });
+ 
 };
 
 

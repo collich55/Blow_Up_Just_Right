@@ -10,45 +10,24 @@ function Ball(options) {
 }
 
 Ball.prototype.collideWith = function collideWith(otherObject) {
-  debugger
-  
+
 };
 
 Ball.prototype.changeSize = function changeSize(adj) {
-  // this.moving = true;
  
   if (this.radius + adj > 0 || adj > 0) {
     this.radius += adj;
-   
   }
-  
 };
 
 Ball.prototype.startGravity = function startGravity() {
-
- 
-    // return the canvas to the state right after we drew the blue rect
-    this.game.ball[2].show = true;
-    this.game.ball[3].show = true;
+  this.game.ball[2].show = true;
+  this.game.ball[3].show = true;
   
   this.moving = true;
 };
 
 
-Ball.prototype.inflate = function inflate(pressHoldEvent) {
-
-  //if (key.isPressed("i")) {
-    
-  //}
-  
-
-  // while (key.isPressed("i")) {
-    // this.pos[0] = dimX
-    this.radius += 3;
-  // }
-  // return the canvas to the state right after we drew the blue rect
-  
-};
 
 
 Ball.prototype.moveSideways = function moveSideways(adj) {
@@ -61,32 +40,8 @@ Ball.prototype.moveSideways = function moveSideways(adj) {
 
 Ball.prototype.draw = function draw(ctx) {
 
-
-  // var img = new Image();
-  // var div = document.getElementById('foo');
-
-  // img.onload = function () {
-  //   div.appendChild(img);
-  // };
-
-  // img.src = '../beach-ball.jpg'  
-
-
-  // var pat = ctx.createPattern(img, "repeat" );
   let img = new Image();
   img.src = 'https://www.c4dcafe.com/ipb/uploads/monthly_2017_12/5a20a56f2c5c3_PhotoshopCCScreenSnapz002.jpg.5022d111be1a7444a200e9e5c9dccea0.jpg';
-  
-  
-
-  
-
-
-  // ctx.beginPath();
-  // ctx.arc(
-  //   this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
-  // );
-  // ctx.fill();
-
 
   ctx.save();
   ctx.beginPath();
@@ -94,23 +49,10 @@ Ball.prototype.draw = function draw(ctx) {
     this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
   );
   ctx.clip();
-  
-  
   ctx.drawImage(img, this.pos[0]-(this.radius) , this.pos[1]-(this.radius), this.radius*2, this.radius*2);
   ctx.restore();
-  
 
-  // ctx.beginPath();
-  // ctx.arc(
-  //   this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
-  // );
-  
-  // ctx.clip();
-  // ctx.restore();
-
-  
-
-
+  //plain red ball:
   // ctx.fillStyle = "red"
   // ctx.fillRect(this.pos[0]-this.radius, this.pos[1]-this.radius, this.radius*2, this.radius*2);
 
@@ -118,7 +60,7 @@ Ball.prototype.draw = function draw(ctx) {
 
 
 
-
+//probably useless since I use collision on floor and posts for specific messages right now
 Ball.prototype.isCollidedWith = function isCollidedWith(otherObject) {
   const centerDist = Util.dist(this.pos, otherObject.pos);
   return centerDist < (this.radius + otherObject.radius);
@@ -127,7 +69,7 @@ Ball.prototype.isCollidedWith = function isCollidedWith(otherObject) {
 
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 
-Ball.prototype.gravity = function gravity(timeDelta) {
+Ball.prototype.gravity = function gravity() {
 
     this.vel[1] = this.vel[1] + 0.5;
 

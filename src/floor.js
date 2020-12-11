@@ -6,10 +6,9 @@ function Floor(options) {
 }
 
 Floor.prototype.draw = function draw(ctx) {
-    ctx.beginPath();
-    ctx.moveTo(0, 700);
-    ctx.lineTo(1440, 700);
-    
+    // ctx.beginPath();
+    // ctx.moveTo(0, 700);
+    // ctx.lineTo(1440, 700);
     // ctx.stroke();
 };
 
@@ -32,7 +31,6 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
         }
         if (this.game.ball[0].pos[0] < lower) {
             message = "You landed outside of the goal!"
-            
         }
         let total = Math.abs(this.game.ball[2].pos[0] - this.game.ball[3].pos[0])
         let score = ((Math.abs(this.game.ball[2].pos[0] - this.game.ball[3].pos[0])) - (this.game.ball[0].radius * 2));
@@ -44,6 +42,7 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
             } else {
                 let num = ((100 - (((score) / total) * 100)))
                 alert("You got " + Math.ceil(num) + " points!")
+                // console.log(this.game);
             }
         }
         
@@ -58,9 +57,7 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
 };
 
 Floor.prototype.isCollidedWith = function isCollidedWith(otherObject) {
-    
     const centerDist = (otherObject.pos[1] + otherObject.radius) >= this.pos[1];
-    console.log(centerDist)
     return centerDist;
 };
 

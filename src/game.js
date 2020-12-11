@@ -135,7 +135,7 @@ Game.prototype.checkCollisions = function checkCollisions() {
       const obj2 = allObjects[j];
 
       if (obj1.isCollidedWith(obj2) && obj2 instanceof Ball && (!(obj1 instanceof Ball)) ) {
-        debugger
+        
         // allObjects[2].show = true;
         // allObjects[3].show = true;
         const collision = obj1.collideWith(obj2);
@@ -175,19 +175,8 @@ Game.prototype.draw = function draw(ctx) {
   ctx.fillText("Try to Land between Posts. Larger Ball Gives a Bigger Score!", 50, 100);
   // ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
   // ctx.fillText("larger/smaller (fine tuning) = q/x", 50, 200);
-  // ctx.fillText("show poles again (cheating) = l", 50, 250);
-  // ctx.fillText("new poles = p", 50, 300);
-  
-
-  // ctx.font = "30px Verdana";
-  // // Create gradient
-  // var gradient = ctx.createLinearGradient(0, 0, c.width, 0);
-  // gradient.addColorStop("0", " magenta");
-  // gradient.addColorStop("0.5", "blue");
-  // gradient.addColorStop("1.0", "red");
-  // // Fill with gradient
-  // ctx.fillStyle = gradient;
-  // ctx.fillText("Big smile!", 10, 90);
+  ctx.fillText("Show Poles Again (Cheating) = l", 50, 150);
+  ctx.fillText("New Poles = p", 50, 200);
 
   this.allObjects().forEach(function(object) {
     object.draw(ctx);
