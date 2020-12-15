@@ -59,7 +59,7 @@ Post.prototype.changeShow = function changeShow() {
 }
 
 Post.prototype.collideWith = function collideWith(otherObject) {
-    oneScoreEl.innerHTML = `Missed`
+    oneScoreEl.innerHTML = `Hit Pole`
     otherObject.moving = false;
     otherObject.vel = [0, 0];
     otherObject.pos = [720, 150];

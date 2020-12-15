@@ -154,10 +154,23 @@ Game.prototype.draw = function draw(ctx) {
 
   let img = new Image();
   img.src = 'https://img.freepik.com/free-photo/sand_74190-171.jpg?size=626&ext=jpg';
+
+  let img2 = new Image();
+  img2.src = "https://media.freestocktextures.com/cache/12/ef/12efb857005f76685eeb8b41d87571f0.jpg";
+
+
+  let img3 = new Image();
+  img3.src = "https://www.tonytextures.com/free-texture-gallery/sky/Sky_Clouds_Photo_Texture_A_P1119218.JPG";
+
   
-  ctx.drawImage(img, 0, 700);
-  ctx.drawImage(img, 500, 700);
-  ctx.drawImage(img, 1000, 700);
+  // ctx.drawImage(img, 0, 700);
+  // ctx.drawImage(img, 500, 700);
+  ctx.drawImage(img, 0, 700, 1440, 200);
+  ctx.drawImage(img2, 0, 675, 1440, 25);
+  ctx.drawImage(img3, 0, 0, 1440, 675);
+
+  // ctx.drawImage(img2, 500, 500);
+  // ctx.drawImage(img2, 1000, 500);
 
   // debugger
 

@@ -43,7 +43,8 @@ Ball.prototype.moveSideways = function moveSideways(adj) {
 Ball.prototype.draw = function draw(ctx) {
 
   let img = new Image();
-  img.src = './beach-ball.jpg';
+  img.src = 'https://static.turbosquid.com/Preview/001213/351/EI/3D-beach-ball-model_D.jpg';
+  //// img.src = './beach-ball.jpg';
 
   ctx.save();
   ctx.beginPath();
