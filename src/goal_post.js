@@ -35,7 +35,7 @@ Post.prototype.changePosts = function changePosts() {
     let third_x;
     let fourth_x;
 
-    second_x = first_x + ((300 * Math.random()) + 150)
+    second_x = first_x + ((240 * Math.random()) + 150)
     third_x = first_x - 20;
     fourth_x = second_x + 20;
 
