@@ -1,21 +1,32 @@
 const Util = require("./util");
 
+const scoreEl = document.getElementById("scoreEl")
+const oneScoreEl = document.getElementById("oneScoreEl")
+
+
+
 function Floor(options) {
     this.pos = options.pos;
     this.game = options.game;
     // this.ctx = this.game.ctx;
     this.message = false;
     this.score = 0;
+    this.one_score = 0;
+    scoreEl.innerHTML = this.score;
+    oneScoreEl.innerHTML = this.one_score;
+    
 }
+
+
 
 Floor.prototype.draw = function draw(ctx) {
     
-    // if (this.message) {
-    //     // let num = ((100 - (((score) / total) * 100)))
-    //     this.ctx.font = "30px Comic Sans MS";
-    //     this.ctx.fillStyle = "black";
-    //     this.ctx.fillText("Will this work????", 500, 500);
-    // }
+    if (this.message) {
+        // let num = ((100 - (((score) / total) * 100)))
+        ctx.font = "30px Comic Sans MS";
+        ctx.fillStyle = "black";
+        ctx.fillText("Will this work????", 500, 500);
+    }
 
     // setTimeout(function () {
     //     this.message = false;
@@ -30,7 +41,6 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
     
     let lower;
     let higher;
-    let message;
     
     // setTimeout(function () {
         if (this.game.ball[2].pos[0] < this.game.ball[3].pos[0]) {
@@ -48,13 +58,17 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
         score = score.toString();
         if (otherObject.moving !== false) {
             if (this.game.ball[0].pos[0] < lower || this.game.ball[0].pos[0] > higher) {
-                alert("You landed outside of the goal!")
+                this.one_score = 0;
+                oneScoreEl.innerHTML = `Missed`
                 // Floor.flashyText();
             } else {
-                // this.message = true;
                 // Floor.draw()
                 let num = ((100 - (((score) / total) * 100)))
-                alert("You got " + Math.ceil(num) + " points!");
+                this.score += Math.ceil(num);
+                this.one_score = Math.ceil(num);
+                scoreEl.innerHTML = `${this.score}`
+                oneScoreEl.innerHTML = `${this.one_score}`
+                
                 // console.log(this.game);
                 
             }

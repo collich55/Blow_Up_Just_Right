@@ -1,5 +1,7 @@
 const Util = require("./util");
 
+const oneScoreEl = document.getElementById("oneScoreEl")
+
 function Post(options) {
     this.pos = options.pos;
     this.game = options.game;
@@ -33,7 +35,7 @@ Post.prototype.changePosts = function changePosts() {
     let third_x;
     let fourth_x;
 
-    second_x = first_x + ((300 * Math.random()) + 80)
+    second_x = first_x + ((300 * Math.random()) + 150)
     third_x = first_x - 20;
     fourth_x = second_x + 20;
 
@@ -57,7 +59,7 @@ Post.prototype.changeShow = function changeShow() {
 }
 
 Post.prototype.collideWith = function collideWith(otherObject) {
-    alert("You hit the pole!")
+    oneScoreEl.innerHTML = `Missed`
     otherObject.moving = false;
     otherObject.vel = [0, 0];
     otherObject.pos = [720, 150];

@@ -2,6 +2,7 @@
 
 <head>
     <title>Blow It Up</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
             margin-top: 0px;
@@ -13,8 +14,13 @@
 </head>
 
 <body>
+
+    <div class="fixed text-2xl ml-2 mt-1 text-red-600"><span>Score: </span><span id="scoreEl">0</span></div>
+    <div class="fixed text-2xl ml-2 mt-7 text-yellow-600"><span>Last Drop: </span><span id="oneScoreEl">0</span></div>
     
     <canvas id="canvas"></canvas>
+
+   
 
     <script type="application/javascript" src="./vendor/keymaster.js"></script>
     <script type="application/javascript" src="./dist/main.js"></script>

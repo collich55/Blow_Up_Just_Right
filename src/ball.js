@@ -11,6 +11,8 @@ function Ball(options) {
 
 Ball.prototype.collideWith = function collideWith(otherObject) {
 
+  
+
 };
 
 Ball.prototype.changeSize = function changeSize(adj) {

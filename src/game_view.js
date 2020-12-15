@@ -60,7 +60,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   // Increase or decreae value to adjust how long
   // one should keep pressing down before the pressHold
   // event fires
-  let pressHoldDuration = 1000;
+  let pressHoldDuration = 150;
 
   // Listening for the mouse and touch events    
   window.addEventListener("mousedown", pressingDown, false);
@@ -103,7 +103,10 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
       counter++;
       ball.radius += counter / 50
     } else {
+      cancelAnimationFrame(timerID);
+      counter = 0;
       console.log("Press threshold reached!");
+      ball.startGravity();
       // ball.radius += counter / 50
     }
   }
