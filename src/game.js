@@ -54,17 +54,11 @@ Game.prototype.addPost = function addPost() {
   let third_x;
   let fourth_x;
 
-  if (first_x > 1200) {
-    second_x = first_x - ((300 * Math.random()) + 30)
-    third_x = first_x - 20;
-    fourth_x = second_x + 20;
+  second_x = first_x + ((200 * Math.random()) + 200)
+  third_x = first_x - 20;
+  fourth_x = second_x + 20;
 
-  } else {
-    second_x = first_x + ((300 * Math.random()) + 30)
-    third_x = first_x - 20;
-    fourth_x = second_x + 20;
 
-  }
 
 
   const post1 = new Post({
@@ -153,7 +147,7 @@ Game.prototype.draw = function draw(ctx) {
   ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
   let img = new Image();
-  img.src = 'https://img.freepik.com/free-photo/sand_74190-171.jpg?size=626&ext=jpg';
+  img.src = 'Desert_Sand_Texture-1203.jpg';
 
   let img2 = new Image();
   img2.src = "https://media.freestocktextures.com/cache/12/ef/12efb857005f76685eeb8b41d87571f0.jpg";
@@ -197,8 +191,8 @@ Game.prototype.moveObjects = function moveObjects(delta) {
   });
 };
 
-Game.prototype.randomX = function randomPosition() {
-  return ((1200 * Math.random()) + 200)
+Game.prototype.randomX = function randomX() {
+  return ((900 * Math.random()) + 50)
 };
 
 

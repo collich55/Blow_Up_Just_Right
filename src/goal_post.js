@@ -35,7 +35,7 @@ Post.prototype.changePosts = function changePosts() {
     let third_x;
     let fourth_x;
 
-    second_x = first_x + ((240 * Math.random()) + 150)
+    second_x = first_x + ((200 * Math.random()) + 200)
     third_x = first_x - 20;
     fourth_x = second_x + 20;
 
@@ -51,7 +51,7 @@ Post.prototype.changePosts = function changePosts() {
 };
 
 Post.prototype.randomX = function randomX() {
-    return ((950 * Math.random())+50)
+    return ((900 * Math.random())+50)
 };
 
 Post.prototype.changeShow = function changeShow() {
