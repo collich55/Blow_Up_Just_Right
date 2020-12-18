@@ -5,7 +5,11 @@ function GameView(game, ctx) {
   this.game = game;
   this.ball = this.game.addBall();
   this.floor = this.game.addFloor();
-  this.post = this.game.addPost();
+  this.post = this.game.addPost()
+  this.timeEl = document.getElementById("timeEl")
+  this.secs = 30;
+  this.timeEl.innerHTML = this.secs;
+  this.tim;
 }
 
 GameView.ADJUST = {
@@ -34,6 +38,8 @@ GameView.MOVE = {
 GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   const ball = this.ball;
   const post = this.post;
+  
+  
 
   Object.keys(GameView.ADJUST).forEach(function (k) {
     const adj = GameView.ADJUST[k];
@@ -45,8 +51,24 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
     post[1].changeShow();
   }, 1000);
 
-
+  const that = this;
   key("space", function () { ball.startGravity(); });
+  key("r", function () { that.floor.resetScore(); });
+  key("t", function () {
+    clearInterval(that.tim);
+    that.secs = 30;
+    that.tim = setInterval(function () {
+      that.secs -= 1;
+      that.timeEl.innerHTML = that.secs
+      if (that.secs === -1) {
+        // that.secs = 50;
+        clearInterval(that.tim);
+        that.secs = 30
+        that.timeEl.innerHTML = that.secs
+        return;
+      }
+    }, 1000);
+    });
 
 //------------------------------------------------------------------
 //code snippit in dashed lines from https://www.kirupa.com/html5/press_and_hold.htm by Kirupa

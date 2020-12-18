@@ -44,10 +44,10 @@ Post.prototype.changePosts = function changePosts() {
     this.game.ball[4].pos[0] = third_x;
     this.game.ball[5].pos[0] = fourth_x;
 
-    this.game.ball[2].show = true;
-    this.game.ball[3].show = true;
-    this.game.ball[4].show = true;
-    this.game.ball[5].show = true;
+    this.game.ball[2].changeShow();
+    this.game.ball[3].changeShow();
+    this.game.ball[4].changeShow();
+    this.game.ball[5].changeShow();
 };
 
 Post.prototype.randomX = function randomX() {
@@ -59,13 +59,19 @@ Post.prototype.changeShow = function changeShow() {
 }
 
 Post.prototype.collideWith = function collideWith(otherObject) {
+    let that = this;
     oneScoreEl.innerHTML = `Hit Pole`
     otherObject.moving = false;
     otherObject.vel = [0, 0];
     otherObject.pos = [720, 150];
     otherObject.radius = 10;
-    this.game.ball[2].show = false;
-    this.game.ball[3].show = false;
+    this.changePosts();
+    setTimeout(function () {
+        that.game.ball[2].changeShow();
+        that.game.ball[3].changeShow();
+    }, 1000) 
+    
+    
 };
 
 Post.prototype.isCollidedWith = function isCollidedWith(otherObject) {

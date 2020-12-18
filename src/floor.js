@@ -34,6 +34,13 @@ Floor.prototype.draw = function draw(ctx) {
     
 };
 
+Floor.prototype.resetScore = function resetScore() {
+    this.score = 0;
+    this.one_score = 0;
+    scoreEl.innerHTML = this.score;
+    oneScoreEl.innerHTML = this.one_score;
+}
+
 
 // ((Math.abs(this.game.ball[2].pos[0] - this.game.ball[3].pos[0])) - this.game.ball[0].radius)
 Floor.prototype.collideWith = function collideWith(otherObject) {
@@ -62,12 +69,15 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
                 oneScoreEl.innerHTML = `Missed`
                 // Floor.flashyText();
             } else {
-                // Floor.draw()
+                let that = this;
                 let num = ((100 - (((score) / total) * 100)))
                 this.score += Math.ceil(num);
                 this.one_score = Math.ceil(num);
                 scoreEl.innerHTML = `${this.score}`
                 oneScoreEl.innerHTML = `${this.one_score}`
+                // that.game.ball[2].changePosts();
+                // that.game.ball[2].changePosts();
+                
                 
                 // console.log(this.game);
                 

@@ -8,7 +8,7 @@ function Game(ctx) {
   this.ball = [];
 }
 
-Game.BG_COLOR = "lightblue";
+Game.BG_COLOR = "#c2b280";
 Game.DIM_X = innerWidth;
 Game.DIM_Y = innerHeight;
 
@@ -170,12 +170,14 @@ Game.prototype.draw = function draw(ctx) {
 
   ctx.font = "30px Comic Sans MS";
   ctx.fillStyle = "black";
-  ctx.fillText("Click and Hold to Inflate Beach Ball Wherever You Click", 50, 85);
-  ctx.fillText("Try to Land between Posts. Larger Ball Gives a Bigger Score!", 50, 130);
+  ctx.fillText("Click and Hold to Inflate Beach Ball Wherever You Click", 50, 105);
+  ctx.fillText("Try to Land between Posts. Larger Ball Gives a Bigger Score!", 50, 135);
   // ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
   // ctx.fillText("larger/smaller (fine tuning) = q/x", 50, 200);
-  ctx.fillText("Show Poles Again (cheating) = l", 50, 180);
+  ctx.fillText("Show Poles Again (cheating) = l", 50, 200)
   ctx.fillText("New Poles = p", 50, 230);
+  ctx.fillText("Start Timer = t", 50, 260);
+  ctx.fillText("Reset Score = r", 50, 290);
 
   this.allObjects().forEach(function(object) {
     object.draw(ctx);
