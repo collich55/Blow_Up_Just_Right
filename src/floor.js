@@ -75,8 +75,12 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
                 this.one_score = Math.ceil(num);
                 scoreEl.innerHTML = `${this.score}`
                 oneScoreEl.innerHTML = `${this.one_score}`
-                // that.game.ball[2].changePosts();
-                // that.game.ball[2].changePosts();
+                that.game.ball[2].changePosts();
+                setTimeout(function () {
+                    that.game.ball[2].show = false;
+                    that.game.ball[3].show = false;
+                }, 1000)
+                
                 
                 
                 // console.log(this.game);
@@ -88,8 +92,13 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
     otherObject.vel = [0,0];
     otherObject.pos = [720, 150];
     otherObject.radius = 10;
-    this.game.ball[2].show = false;
-    this.game.ball[3].show = false;
+   
+    this.game.ball[2].show = true;
+    this.game.ball[3].show = true;
+   
+    
+
+    
 
 
 };

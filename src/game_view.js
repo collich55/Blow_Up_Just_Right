@@ -47,8 +47,8 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   });
 
   setTimeout(function () {
-    post[0].changeShow();
-    post[1].changeShow();
+    post[0].show = false;
+    post[1].show = false;
   }, 1000);
 
   const that = this;
@@ -97,21 +97,30 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
   function pressingDown(e) {
     // Start the timer
-    requestAnimationFrame(timer);
+    if (e.button == 0) {
+      // left click
+    
+      requestAnimationFrame(timer);
 
-    e.preventDefault();
-    ball.pos[0] = e.offsetX
+      e.preventDefault();
+      ball.pos[0] = e.offsetX
 
-    console.log("Pressing!");
+      console.log("Pressing!");
+    }
   }
 
   function notPressingDown(e) {
-    // Stop the timer
-    cancelAnimationFrame(timerID);
-    counter = 0;
-    ball.startGravity();
+    if (e.button == 0) {
+      // left click
+    
+      e.preventDefault();
+      // Stop the timer
+      cancelAnimationFrame(timerID);
+      counter = 0;
+      ball.startGravity();
 
-    console.log("Not pressing!");
+      console.log("Not pressing!");
+    }
   }
 
   //
@@ -134,7 +143,13 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   }
 
   function doSomething(e) {
-    console.log("pressHold event fired!");
+    if (e.button == 0) {
+      // left click
+    
+      console.log("pressHold event fired!");
+      e.preventDefault();
+    }
+        
     // ball.inflate();
   }
   //------------------------------------------------------------------------
@@ -147,12 +162,12 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
   key("l", function () {
     
-  post[0].changeShow();
-  post[1].changeShow();
+  post[0].show = true;
+  post[1].show = true;
     
   setTimeout(function () {
-    post[0].changeShow();
-    post[1].changeShow();
+    post[0].show = false;
+    post[1].show = false;
   }, 1000);
 
   });
@@ -163,8 +178,8 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
     post[0].changePosts(); 
 
     setTimeout(function () {
-      post[0].changeShow();
-      post[1].changeShow();
+      post[0].show = false;
+      post[1].show = false;
     }, 1000) 
   });
 

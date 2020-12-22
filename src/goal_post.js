@@ -44,10 +44,15 @@ Post.prototype.changePosts = function changePosts() {
     this.game.ball[4].pos[0] = third_x;
     this.game.ball[5].pos[0] = fourth_x;
 
-    this.game.ball[2].changeShow();
-    this.game.ball[3].changeShow();
-    this.game.ball[4].changeShow();
-    this.game.ball[5].changeShow();
+    this.game.ball[2].show = true;
+    this.game.ball[3].show = true;
+    setTimeout(function () {
+        that.game.ball[2].show = false;
+        that.game.ball[3].show = false;
+    }, 1000) 
+
+    // this.game.ball[4].changeShow();
+    // this.game.ball[5].changeShow();
 };
 
 Post.prototype.randomX = function randomX() {
@@ -67,8 +72,8 @@ Post.prototype.collideWith = function collideWith(otherObject) {
     otherObject.radius = 10;
     this.changePosts();
     setTimeout(function () {
-        that.game.ball[2].changeShow();
-        that.game.ball[3].changeShow();
+        that.game.ball[2].show = false;
+        that.game.ball[3].show = false;
     }, 1000) 
     
     
