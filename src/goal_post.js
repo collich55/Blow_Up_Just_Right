@@ -34,6 +34,7 @@ Post.prototype.changePosts = function changePosts() {
     let second_x;
     let third_x;
     let fourth_x;
+    let that = this;
 
     second_x = first_x + ((200 * Math.random()) + 200)
     third_x = first_x - 20;
@@ -46,6 +47,8 @@ Post.prototype.changePosts = function changePosts() {
 
     this.game.ball[2].show = true;
     this.game.ball[3].show = true;
+
+
     setTimeout(function () {
         that.game.ball[2].show = false;
         that.game.ball[3].show = false;

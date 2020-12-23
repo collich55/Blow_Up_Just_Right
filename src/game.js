@@ -172,12 +172,16 @@ Game.prototype.draw = function draw(ctx) {
   ctx.fillStyle = "black";
   ctx.fillText("Click and Hold to Inflate Beach Ball Wherever You Click", 50, 105);
   ctx.fillText("Try to Land between Posts. Larger Ball Gives a Bigger Score!", 50, 135);
+  ctx.fillText("Press the spacebar to start a timed round" , 50, 200);
+  ctx.fillStyle = "blue";
+  ctx.fillRect(50, 200, 591, 1);
+  ctx.fillStyle = "black";
   // ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
   // ctx.fillText("larger/smaller (fine tuning) = q/x", 50, 200);
-  ctx.fillText("Show Poles Again (cheating) = l", 50, 200)
-  ctx.fillText("New Poles = p", 50, 230);
-  ctx.fillText("Start Timer = t", 50, 260);
-  ctx.fillText("Reset Score = r", 50, 290);
+  ctx.fillText("Free Play:", 50, 300)
+  ctx.fillText("Show Poles Again = l", 50, 340)
+  ctx.fillText("New Poles = p", 50, 370);
+  ctx.fillText("Reset Score = r", 50, 400);
 
   this.allObjects().forEach(function(object) {
     object.draw(ctx);

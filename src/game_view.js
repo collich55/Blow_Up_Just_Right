@@ -7,6 +7,8 @@ function GameView(game, ctx) {
   this.floor = this.game.addFloor();
   this.post = this.game.addPost()
   this.timeEl = document.getElementById("timeEl")
+  this.highScoreEl = document.getElementById("highScoreEl")
+  this.scoreEl = document.getElementById("scoreEl")
   this.secs = 30;
   this.timeEl.innerHTML = this.secs;
   this.tim;
@@ -52,9 +54,15 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   }, 1000);
 
   const that = this;
-  key("space", function () { ball.startGravity(); });
+  /// key("space", function () { ball.startGravity(); });
   key("r", function () { that.floor.resetScore(); });
-  key("t", function () {
+  key("space", function () {
+    post[0].changePosts();
+    setTimeout(function () {
+      post[0].show = false;
+      post[1].show = false;
+    }, 1000) 
+    that.floor.resetScore();
     clearInterval(that.tim);
     that.secs = 30;
     that.tim = setInterval(function () {
@@ -65,6 +73,25 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
         clearInterval(that.tim);
         that.secs = 30
         that.timeEl.innerHTML = that.secs
+        cancelAnimationFrame(timerID);
+        counter = 0;
+        ball.startGravity();
+        ball.changeImage = true;
+        setTimeout(function () {
+          ball.changeImage = false;
+        }, 2000)
+
+        setTimeout(function () {
+          if (that.highScoreEl.innerHTML < that.scoreEl.innerHTML) {
+            that.highScoreEl.innerHTML = that.scoreEl.innerHTML;
+          }
+          that.floor.score = 0;
+          that.scoreEl.innerHTML = 0;
+        }, 1000)
+
+
+        
+        
         return;
       }
     }, 1000);
@@ -76,6 +103,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
   let timerID;
   let counter = 0;
+  let isHold = false;
 
   let pressHoldEvent = new CustomEvent("pressHold");
 
@@ -96,13 +124,14 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   window.addEventListener("pressHold", doSomething, false);
 
   function pressingDown(e) {
+    cancelAnimationFrame(timerID)
+    e.preventDefault();
     // Start the timer
     if (e.button == 0) {
       // left click
     
       requestAnimationFrame(timer);
 
-      e.preventDefault();
       ball.pos[0] = e.offsetX
 
       console.log("Pressing!");
@@ -110,9 +139,9 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   }
 
   function notPressingDown(e) {
-    if (e.button == 0) {
-      // left click
     
+     
+
       e.preventDefault();
       // Stop the timer
       cancelAnimationFrame(timerID);
@@ -120,7 +149,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
       ball.startGravity();
 
       console.log("Not pressing!");
-    }
+    
   }
 
   //
@@ -138,13 +167,17 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
       counter = 0;
       console.log("Press threshold reached!");
       ball.startGravity();
+      
       // ball.radius += counter / 50
     }
   }
 
   function doSomething(e) {
+    e.preventDefault();
+    alert("idk")
     if (e.button == 0) {
       // left click
+      
     
       console.log("pressHold event fired!");
       e.preventDefault();
