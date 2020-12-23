@@ -71,14 +71,18 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
       if (that.secs === -1) {
         // that.secs = 50;
         clearInterval(that.tim);
-        that.secs = 30
+        that.secs = 30;
         that.timeEl.innerHTML = that.secs
         cancelAnimationFrame(timerID);
         counter = 0;
         ball.startGravity();
-        ball.changeImage = true;
+        // ball.changeImage = true;
+        that.game.timeUp = true;
+        // setTimeout(function () {
+        //   ball.changeImage = false;
+        // }, 2000)
         setTimeout(function () {
-          ball.changeImage = false;
+          that.game.timeUp = false;
         }, 2000)
 
         setTimeout(function () {
@@ -110,7 +114,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   // Increase or decreae value to adjust how long
   // one should keep pressing down before the pressHold
   // event fires
-  let pressHoldDuration = 150;
+  let pressHoldDuration = 210;
 
   // Listening for the mouse and touch events    
   window.addEventListener("mousedown", pressingDown, false);
@@ -127,28 +131,35 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
     cancelAnimationFrame(timerID)
     e.preventDefault();
     // Start the timer
-    if (e.button == 0) {
+    ///console.log()()(isHold);
+    if (that.game.timeUp === false && e.button == 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild && counter === 0 && isHold === false) {
       // left click
+
+      isHold = true;
     
       requestAnimationFrame(timer);
 
       ball.pos[0] = e.offsetX
 
-      console.log("Pressing!");
+      ///console.log()()("Pressing!");
     }
   }
 
   function notPressingDown(e) {
+
+    if (that.game.timeUp === false && e.button == 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild) {
     
-     
+     debugger
 
       e.preventDefault();
+      isHold = false;
       // Stop the timer
       cancelAnimationFrame(timerID);
       counter = 0;
       ball.startGravity();
 
-      console.log("Not pressing!");
+      ///console.log()()("Not pressing!");
+    }
     
   }
 
@@ -156,16 +167,16 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   // Runs at 60fps when you are pressing down
   //
   function timer() {
-    console.log("Timer tick!");
-
-    if (counter < pressHoldDuration) {
+    ///console.log()()("Timer tick!");
+    if (that.game.timeUp === false && counter < pressHoldDuration && isHold === true) {
       timerID = requestAnimationFrame(timer);
       counter++;
       ball.radius += counter / 50
     } else {
       cancelAnimationFrame(timerID);
+      isHold = false;
       counter = 0;
-      console.log("Press threshold reached!");
+      ///console.log()()("Press threshold reached!");
       ball.startGravity();
       
       // ball.radius += counter / 50
@@ -174,12 +185,11 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
   function doSomething(e) {
     e.preventDefault();
-    alert("idk")
     if (e.button == 0) {
       // left click
       
     
-      console.log("pressHold event fired!");
+      ///console.log()()("pressHold event fired!");
       e.preventDefault();
     }
         

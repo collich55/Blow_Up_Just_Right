@@ -90,7 +90,7 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
                 
                 
                 
-                // console.log(this.game);
+                // ///console.log()()(this.game);
                 
             }
         }

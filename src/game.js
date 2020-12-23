@@ -6,6 +6,7 @@ const Util = require("./util");
 function Game(ctx) {
   this.ctx = ctx;
   this.ball = [];
+  this.timeUp = false;
 }
 
 Game.BG_COLOR = "#c2b280";
@@ -182,6 +183,11 @@ Game.prototype.draw = function draw(ctx) {
   ctx.fillText("Show Poles Again = l", 50, 340)
   ctx.fillText("New Poles = p", 50, 370);
   ctx.fillText("Reset Score = r", 50, 400);
+  if (this.timeUp === true) {
+    ctx.font = "100px Arial";
+    ctx.fillStyle = "red";
+    ctx.fillText("Time is up!", Game.DIM_X/2, Game.DIM_Y/2)
+  }
 
   this.allObjects().forEach(function(object) {
     object.draw(ctx);
