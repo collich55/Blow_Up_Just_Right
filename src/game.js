@@ -163,6 +163,11 @@ Game.prototype.draw = function draw(ctx) {
   
   // ctx.drawImage(img, 0, 700);
   // ctx.drawImage(img, 500, 700);
+  
+  // ctx.drawImage(img, 0, Math.floor((700/1440)*Game.DIM_X), Game.DIM_X, Math.floor((200/789)*Game.DIM_Y));
+  // ctx.drawImage(img2, 0, Math.floor((675 / 1440) * Game.DIM_X), Game.DIM_X, Math.floor((25/789) * Game.DIM_Y));
+  // ctx.drawImage(img3, 0, 0, Game.DIM_X, Math.floor((675/789) * Game.DIM_Y));
+
   ctx.drawImage(img, 0, 700, 1440, 200);
   ctx.drawImage(img2, 0, 675, 1440, 25);
   ctx.drawImage(img3, 0, 0, 1440, 675);

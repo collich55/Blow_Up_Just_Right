@@ -55,7 +55,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   }, 1000);
 
   const that = this;
-  /// key("space", function () { ball.startGravity(); });
+  key("t", function () { ball.startGravity(); });
   key("r", function () { that.floor.resetScore(); });
   key("space", function () {
     that.secs = 10;
