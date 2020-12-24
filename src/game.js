@@ -7,6 +7,9 @@ function Game(ctx) {
   this.ctx = ctx;
   this.ball = [];
   this.timeUp = false;
+  this.onDrop = false;
+  this.newRecord = false;
+  this.tie = false;
 }
 
 Game.BG_COLOR = "#c2b280";
@@ -188,6 +191,20 @@ Game.prototype.draw = function draw(ctx) {
     ctx.fillStyle = "red";
     ctx.fillText("Time is up!", Game.DIM_X/2, Game.DIM_Y/2)
   }
+
+  if (this.newRecord === true) {
+    ctx.font = "100px Arial";
+    ctx.fillStyle = "green";
+    ctx.fillText("New Record!", Game.DIM_X / 2, Game.DIM_Y / 1.5)
+  }
+
+  if (this.tie === true) {
+    ctx.font = "100px Arial";
+    ctx.fillStyle = "yellow";
+    ctx.fillText("Tied for record!", Game.DIM_X / 2, Game.DIM_Y / 1.5)
+  }
+
+
 
   this.allObjects().forEach(function(object) {
     object.draw(ctx);

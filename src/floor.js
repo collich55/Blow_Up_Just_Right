@@ -60,6 +60,7 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
         }
         if (this.game.ball[0].pos[0] < lower) {
             message = "You landed outside of the goal!"
+            that.game.onDrop = false;
         }
         let total = Math.abs(this.game.ball[2].pos[0] - this.game.ball[3].pos[0])
         let score = ((Math.abs(this.game.ball[2].pos[0] - this.game.ball[3].pos[0])) - (this.game.ball[0].radius * 2));
@@ -67,13 +68,14 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
         
         if (otherObject.moving !== false) {
             if (this.game.ball[0].pos[0] < lower || this.game.ball[0].pos[0] > higher) {
-                this.one_score = 0;
+                // this.one_score = 0;
                 oneScoreEl.innerHTML = `Missed`
                 that.game.ball[2].changePosts();
                 setTimeout(function () {
                     that.game.ball[2].show = false;
                     that.game.ball[3].show = false;
                 }, 1000)
+                that.game.onDrop = false;
                 // Floor.flashyText();
             } else {
                 
@@ -87,6 +89,7 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
                     that.game.ball[2].show = false;
                     that.game.ball[3].show = false;
                 }, 1000)
+                that.game.onDrop = false;
                 
                 
                 

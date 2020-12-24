@@ -78,7 +78,7 @@ Post.prototype.collideWith = function collideWith(otherObject) {
         that.game.ball[2].show = false;
         that.game.ball[3].show = false;
     }, 1000) 
-    
+    that.game.onDrop = false;
     
 };
 

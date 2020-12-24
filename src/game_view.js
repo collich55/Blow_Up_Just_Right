@@ -40,6 +40,7 @@ GameView.MOVE = {
 GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   const ball = this.ball;
   const post = this.post;
+  let isHold = false;
   
   
 
@@ -57,6 +58,8 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   /// key("space", function () { ball.startGravity(); });
   key("r", function () { that.floor.resetScore(); });
   key("space", function () {
+    that.secs = 10;
+    that.timeEl.innerHTML = that.secs
     post[0].changePosts();
     setTimeout(function () {
       post[0].show = false;
@@ -64,18 +67,18 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
     }, 1000) 
     that.floor.resetScore();
     clearInterval(that.tim);
-    that.secs = 30;
     that.tim = setInterval(function () {
       that.secs -= 1;
       that.timeEl.innerHTML = that.secs
-      if (that.secs === -1) {
+      if (that.secs === 0) {
         // that.secs = 50;
         clearInterval(that.tim);
-        that.secs = 30;
         that.timeEl.innerHTML = that.secs
         cancelAnimationFrame(timerID);
         counter = 0;
         ball.startGravity();
+        isHold = false;
+        that.game.onDrop = true;
         // ball.changeImage = true;
         that.game.timeUp = true;
         // setTimeout(function () {
@@ -83,15 +86,35 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
         // }, 2000)
         setTimeout(function () {
           that.game.timeUp = false;
-        }, 2000)
+          that.game.onDrop = false;
+        }, 3000)
+        setTimeout(function () {
+          that.timeEl.innerHTML = that.secs
+        }, 1000)
+
+        
 
         setTimeout(function () {
-          if (that.highScoreEl.innerHTML < that.scoreEl.innerHTML) {
-            that.highScoreEl.innerHTML = that.scoreEl.innerHTML;
+          if (that.highScoreEl.innerHTML === that.scoreEl.innerHTML) {
+            that.game.tie = true;
           }
+          if (that.highScoreEl.innerHTML < that.floor.score) {
+            that.highScoreEl.innerHTML = that.scoreEl.innerHTML;
+            that.game.newRecord = true;
+          }
+        }, 1000)
+
+
+        setTimeout(function () {
           that.floor.score = 0;
           that.scoreEl.innerHTML = 0;
-        }, 1000)
+        }, 3000)
+
+        setTimeout(function () {
+          that.game.newRecord = false;
+          that.game.tie = false;
+        }, 3000)
+
 
 
         
@@ -107,7 +130,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
   let timerID;
   let counter = 0;
-  let isHold = false;
+  
 
   let pressHoldEvent = new CustomEvent("pressHold");
 
@@ -132,7 +155,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
     e.preventDefault();
     // Start the timer
     ///console.log()()(isHold);
-    if (that.game.timeUp === false && e.button == 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild && counter === 0 && isHold === false) {
+    if (that.game.onDrop === false && that.game.timeUp === false && e.button == 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild && counter === 0 && isHold === false) {
       // left click
 
       isHold = true;
@@ -147,7 +170,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
   function notPressingDown(e) {
 
-    if (that.game.timeUp === false && e.button == 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild) {
+    if (that.game.onDrop === false && that.game.timeUp === false && e.button == 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild) {
     
      debugger
 
@@ -157,6 +180,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
       cancelAnimationFrame(timerID);
       counter = 0;
       ball.startGravity();
+      that.game.onDrop = true;
 
       ///console.log()()("Not pressing!");
     }
@@ -168,7 +192,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   //
   function timer() {
     ///console.log()()("Timer tick!");
-    if (that.game.timeUp === false && counter < pressHoldDuration && isHold === true) {
+    if (that.game.onDrop === false && that.game.timeUp === false && counter < pressHoldDuration && isHold === true) {
       timerID = requestAnimationFrame(timer);
       counter++;
       ball.radius += counter / 50
@@ -178,6 +202,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
       counter = 0;
       ///console.log()()("Press threshold reached!");
       ball.startGravity();
+      that.game.onDrop = true;
       
       // ball.radius += counter / 50
     }
