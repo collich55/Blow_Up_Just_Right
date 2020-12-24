@@ -58,7 +58,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   key("t", function () { ball.startGravity(); });
   key("r", function () { that.floor.resetScore(); });
   key("space", function () {
-    that.secs = 10;
+    that.secs = 30;
     that.timeEl.innerHTML = that.secs
     post[0].changePosts();
     setTimeout(function () {
@@ -237,6 +237,13 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
     post[0].show = false;
     post[1].show = false;
   }, 1000);
+
+  });
+
+  key("k", function () {
+
+    post[0].show = true;
+    post[1].show = true;
 
   });
 
