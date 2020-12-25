@@ -141,6 +141,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
   // Listening for the mouse and touch events    
   window.addEventListener("mousedown", pressingDown, false);
+  // window.addEventListener("click", pressingDown, false); trying to get safari to work
   window.addEventListener("mouseup", notPressingDown, false);
   window.addEventListener("mouseleave", notPressingDown, false);
 
@@ -155,7 +156,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
     e.preventDefault();
     // Start the timer
     ///console.log()()(isHold);
-    if (that.game.onDrop === false && that.game.timeUp === false && e.button == 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild && counter === 0 && isHold === false) {
+    if (that.game.onDrop === false && that.game.timeUp === false && e.button === 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild && counter === 0 && isHold === false) {
       // left click
 
       isHold = true;
@@ -170,7 +171,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
   function notPressingDown(e) {
 
-    if (that.game.onDrop === false && that.game.timeUp === false && e.button == 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild) {
+    if (that.game.onDrop === false && that.game.timeUp === false && e.button === 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild) {
     
      debugger
 
