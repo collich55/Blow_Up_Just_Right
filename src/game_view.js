@@ -144,9 +144,11 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   // window.addEventListener("click", pressingDown, false); trying to get safari to work
   window.addEventListener("mouseup", notPressingDown, false);
   window.addEventListener("mouseleave", notPressingDown, false);
-
   window.addEventListener("touchstart", pressingDown, false);
   window.addEventListener("touchend", notPressingDown, false);
+ 
+
+  
 
   // Listening for our custom pressHold event
   window.addEventListener("pressHold", doSomething, false);
@@ -170,12 +172,13 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   }
 
   function notPressingDown(e) {
+    e.preventDefault();
 
     if (that.game.onDrop === false && that.game.timeUp === false && e.button === 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild) {
     
      debugger
 
-      e.preventDefault();
+      
       isHold = false;
       // Stop the timer
       cancelAnimationFrame(timerID);
@@ -222,6 +225,9 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
     // ball.inflate();
   }
   //------------------------------------------------------------------------
+  
+
+  //--------------------------------------------------------------------------
 
   
   Object.keys(GameView.MOVE).forEach(function (k) {
