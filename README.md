@@ -1,29 +1,23 @@
 # Blow_Up_Just_Right
 
-Background and Overview
-This game will consist of two vertical lines being generated at a random distance apart at the bottom of the screen, and an area to click in the top of the screen to create a small circle that expands while you continue to hold the click. When the you release the click the circle will stop expanding a fall down toward between the two vertical lines. The goal is to get the biggest circle possible to fall between the two vertical lines, without making it too big as to touch one of the lines.
-Functionality and MVP
-Hosted on Heroku
-Site should be deployed and hosted on Heroku
-Production ReadMe
-Github should include a Production ReadMe that includes an overview and technologies used.
-Wireframe
-Screen Shot 2020-12-07 at 4 35 30 PM
-Technologies and Technical Challenges
-Canvas API
-Work Breakdown
-D1
-create ball
-implement ball growth
-D2
-create gravity that causes ball to fall
-create vertical lines
-D3
-give vertical lines the property of prompting a failure when touched
-create system where that measures final distance between left and right most edge of the ball to calculate distance.
-D4
-Display score at end of turn
-Create turn logic that resets and generates new lines for next round
-Styling. Possibly use beach ball asset for circle, as well as some beach themed asset for the vertical lines; like a fence post, beach umbrella, or lifeguard stand.
-D5
-any and all errors addressed and final touches
+
+## Controls
+
+Blow Up Just Right is a javascript game made using canvas. The controls are simply clicking, holding, and releasing in any position on the screen. This will move the ball to the position where you click, inflate the ball as you hold the click, and let the ball drop when you release the click. 
+
+## Gameplay
+The goal is to drop the ball between the two poles that flash at this bottom of the screen, like in the gif below. The larger the ball you managed to get between the posts, the more points you are awarded for that drop. In the top left corner you can see the score award to you last drop (max score is 100, representing a rounded up percentage of the space between the posts you were able to take up with the ball), as well as the total score you have accumulated. 
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/62472030/103181370-64d1b700-486e-11eb-8275-6b6fc3aa140c.gif)
+
+Hitting pole will be rewarded no points and will display a message in the last drop line.
+
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/62472030/103181373-6f8c4c00-486e-11eb-987e-88c1c53e91fe.gif)
+
+Simalarly, dropping the ball outside of the space between the posts will be rewarded no points and display a message in the last drop line.
+
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/62472030/103181375-74e99680-486e-11eb-8a24-f9d8d19ac9d3.gif)
+
+Pressing the spacebar will start a timed mode which will last 30 seconds. The goal is to score as many points as you can within this 30 second time frame. At the end of the time frame the ball will automatically be dropped, and a message will flash on the screen indicating if you have beaten your highest score since visiting the page, where it will remain displayed in the top left corner.
+
+![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/62472030/103181384-7adf7780-486e-11eb-98e9-5750d007f1e8.gif)
