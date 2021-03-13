@@ -145,20 +145,22 @@ Game.prototype.checkCollisions = function checkCollisions() {
   }
 };
 
+let img = new Image();
+img.src = 'Desert_Sand_Texture-1203.jpg';
+
+let img2 = new Image();
+img2.src = "https://media.freestocktextures.com/cache/12/ef/12efb857005f76685eeb8b41d87571f0.jpg";
+
+
+let img3 = new Image();
+img3.src = "https://www.tonytextures.com/free-texture-gallery/sky/Sky_Clouds_Photo_Texture_A_P1119218.JPG";
+
 Game.prototype.draw = function draw(ctx) {
   ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
   ctx.fillStyle = Game.BG_COLOR;
   ctx.fillRect(0, 0, Game.DIM_X, Game.DIM_Y);
 
-  let img = new Image();
-  img.src = 'Desert_Sand_Texture-1203.jpg';
-
-  let img2 = new Image();
-  img2.src = "https://media.freestocktextures.com/cache/12/ef/12efb857005f76685eeb8b41d87571f0.jpg";
-
-
-  let img3 = new Image();
-  img3.src = "https://www.tonytextures.com/free-texture-gallery/sky/Sky_Clouds_Photo_Texture_A_P1119218.JPG";
+  
 
   
   // ctx.drawImage(img, 0, 700);
