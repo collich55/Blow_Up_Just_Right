@@ -55,7 +55,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   }, 1000);
 
   const that = this;
-  key("t", function () { ball.startGravity(); });
+  key("e", function () { ball.startGravity(); });
   key("r", function () { that.floor.resetScore(); });
   key("space", function () {
     that.secs = 30;
@@ -144,8 +144,8 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   // window.addEventListener("click", pressingDown, false); trying to get safari to work
   window.addEventListener("mouseup", notPressingDown, false);
   window.addEventListener("mouseleave", notPressingDown, false);
-  window.addEventListener("touchstart", pressingDown, false);
-  window.addEventListener("touchend", notPressingDown, false);
+  // window.addEventListener("touchstart", pressingDown, false);
+  // window.addEventListener("touchend", notPressingDown, false);
  
 
   
@@ -156,9 +156,10 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   function pressingDown(e) {
     cancelAnimationFrame(timerID)
     e.preventDefault();
+    debugger
     // Start the timer
     ///console.log()()(isHold);
-    if (that.game.onDrop === false && that.game.timeUp === false && e.button === 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild && counter === 0 && isHold === false) {
+    if (that.game.onDrop === false && e.path[0].id === "canvas" && that.game.timeUp === false && e.button === 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild && counter === 0 && isHold === false) {
       // left click
 
       isHold = true;
@@ -174,7 +175,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   function notPressingDown(e) {
     e.preventDefault();
 
-    if (that.game.onDrop === false && that.game.timeUp === false && e.button === 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild) {
+    if (that.game.onDrop === false && e.path[0].id === "canvas" && that.game.timeUp === false && e.button === 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild) {
     
      debugger
 
