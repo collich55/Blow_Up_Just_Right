@@ -58,7 +58,7 @@ Game.prototype.addPost = function addPost() {
   let third_x;
   let fourth_x;
 
-  second_x = first_x + ((200 * Math.random()) + 200)
+  second_x = first_x + ((innerWidth * .10 * Math.random()) + innerWidth * .15)
   third_x = first_x - 20;
   fourth_x = second_x + 20;
 
@@ -193,6 +193,8 @@ Game.prototype.draw = function draw(ctx) {
   ctx.fillText("Show Poles Again = l", 50, 340)
   ctx.fillText("New Poles = p", 50, 370);
   ctx.fillText("Reset Score = r", 50, 400);
+  // ctx.fillStyle = "yellow";
+  // ctx.fillRect(1300, 200, 591, 2);
   if (this.timeUp === true) {
     ctx.font = "100px Arial";
     ctx.fillStyle = "red";
@@ -228,7 +230,7 @@ Game.prototype.moveObjects = function moveObjects(delta) {
 };
 
 Game.prototype.randomX = function randomX() {
-  return ((900 * Math.random()) + 50)
+  return ((innerWidth * .7 * Math.random()) + (innerWidth * .04))
 };
 
 

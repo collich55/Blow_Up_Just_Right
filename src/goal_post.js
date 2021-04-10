@@ -1,3 +1,4 @@
+const { DIM_X } = require("./game");
 const Util = require("./util");
 
 const oneScoreEl = document.getElementById("oneScoreEl")
@@ -28,6 +29,10 @@ Post.prototype.draw = function draw(ctx) {
     
 }
 
+Post.prototype.randomX = function randomX() {
+    return ((innerWidth * .7 * Math.random())+ (innerWidth*.04))
+};
+
 
 Post.prototype.changePosts = function changePosts() {
     const first_x = this.randomX();
@@ -36,7 +41,7 @@ Post.prototype.changePosts = function changePosts() {
     let fourth_x;
     let that = this;
 
-    second_x = first_x + ((200 * Math.random()) + 200)
+    second_x = first_x + ((innerWidth * .10 * Math.random()) + innerWidth * .15)
     third_x = first_x - 20;
     fourth_x = second_x + 20;
 
@@ -58,9 +63,7 @@ Post.prototype.changePosts = function changePosts() {
     // this.game.ball[5].changeShow();
 };
 
-Post.prototype.randomX = function randomX() {
-    return ((900 * Math.random())+50)
-};
+
 
 Post.prototype.changeShow = function changeShow() {
     this.show = !this.show
