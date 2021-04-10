@@ -24,7 +24,9 @@ Pressing the spacebar will start a timed mode which will last 30 seconds. The go
 
 ## New Posts Code
 
-For a greater variety of challenge I decided to make the goal posts appear at a random position horizontally, as well a random distance between them after each drop. I start by assigning the first pole a random number. This number is always less than 74% of the inner width of the screen to leave distance for the the second pole to fit in the window. The second pole uses 
+For a greater variety of challenge I decided to make the goal posts appear at a random position horizontally, as well a random distance between them after each drop. I start by assigning the first pole a random number. This number is always less than 74% of the inner width of the screen to leave distance for the the second pole to fit in the window. The second pole references the random value from the first pole and adds 15% of the inner width, which represent the minimum distance between two poles. Then an additional value between 0 - 12% of the inner width is added create varying distances between the two poles.
+
+Since these "poles" are actually just lines, I added two additional lines of the same height to create collision on both corners of the poles. This was achienved by siimple referencing the first and second poles and creating a difference of 20 pixels, the thickness of the pole image in the game.
 ```Javascript
 
 Post.prototype.randomX = function randomX() {
@@ -39,7 +41,7 @@ Post.prototype.changePosts = function changePosts() {
     let fourth_x;
     let that = this;
 
-    second_x = first_x + ((innerWidth * .10 * Math.random()) + innerWidth * .15)
+    second_x = first_x + ((innerWidth * .12 * Math.random()) + innerWidth * .15)
     third_x = first_x - 20;
     fourth_x = second_x + 20;
 
