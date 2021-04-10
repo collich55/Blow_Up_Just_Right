@@ -42,18 +42,18 @@ Post.prototype.changePosts = function changePosts() {
     third_x = first_x - 20;
     fourth_x = second_x + 20;
 
-    this.game.ball[2].pos[0] = first_x;
-    this.game.ball[3].pos[0] = second_x;
-    this.game.ball[4].pos[0] = third_x;
-    this.game.ball[5].pos[0] = fourth_x;
+    this.game.objects[2].pos[0] = first_x;
+    this.game.objects[3].pos[0] = second_x;
+    this.game.objects[4].pos[0] = third_x;
+    this.game.objects[5].pos[0] = fourth_x;
 
-    this.game.ball[2].show = true;
-    this.game.ball[3].show = true;
+    this.game.objects[2].show = true;
+    this.game.objects[3].show = true;
 
 
     setTimeout(function () {
-        that.game.ball[2].show = false;
-        that.game.ball[3].show = false;
+        that.game.objects[2].show = false;
+        that.game.objects[3].show = false;
     }, 1000) 
 
     
