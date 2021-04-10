@@ -30,7 +30,7 @@ Post.prototype.draw = function draw(ctx) {
 }
 
 Post.prototype.randomX = function randomX() {
-    return ((innerWidth * .7 * Math.random())+ (innerWidth*.04))
+    return ((innerWidth * .65 * Math.random())+ (innerWidth*.04))
 };
 
 
@@ -41,7 +41,7 @@ Post.prototype.changePosts = function changePosts() {
     let fourth_x;
     let that = this;
 
-    second_x = first_x + ((innerWidth * .10 * Math.random()) + innerWidth * .15)
+    second_x = first_x + ((innerWidth * .12 * Math.random()) + innerWidth * .15)
     third_x = first_x - 20;
     fourth_x = second_x + 20;
 
