@@ -181,8 +181,8 @@ Game.prototype.draw = function draw(ctx) {
 
   ctx.font = "30px Comic Sans MS";
   ctx.fillStyle = "black";
-  ctx.fillText("Click and Hold to Inflate Beach Ball Wherever You Click", 50, 105);
-  ctx.fillText("Try to Land between Posts. Larger Ball Gives a Bigger Score!", 50, 135);
+  ctx.fillText("Click and Hold to Inflate the Beach Ball Wherever You Click.", 50, 105);
+  ctx.fillText("Land between the Posts for Points. The Bigger the Beach Ball the More Points You Get!", 50, 135);
   ctx.fillText("Press the spacebar to start a timed round" , 50, 200);
   ctx.fillStyle = "blue";
   ctx.fillRect(50, 200, 591, 1);
