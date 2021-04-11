@@ -187,7 +187,7 @@ Game.prototype.draw = function draw(ctx) {
   ctx.fillText("Land between the Posts for Points. The Bigger the Beach Ball the More Points You Get!", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (135 / 821)));
   ctx.fillText("Press the spacebar to start a timed round", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (200 / 821)));
   ctx.fillStyle = "blue";
-  ctx.fillRect((Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (200 / 821)), (Game.DIM_X * (587 / 1440)), 1);
+  ctx.fillRect((Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (200 / 821)), 587, 1);
   ctx.fillStyle = "black";
   // ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
   // ctx.fillText("larger/smaller (fine tuning) = q/x", 50, 200);
