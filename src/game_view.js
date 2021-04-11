@@ -274,7 +274,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
     key(k, function () { ball.moveSideways(adj); });
   });  
 
-  key("l", function () {
+  key("k", function () {
     
   post[0].show = true;
   post[1].show = true;

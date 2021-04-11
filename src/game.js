@@ -184,17 +184,18 @@ Game.prototype.draw = function draw(ctx) {
   ctx.font = "30px Comic Sans MS";
   ctx.fillStyle = "black";
   ctx.fillText("Click and Hold to Inflate the Beach Ball Wherever You Click.", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (105 / 821)));
-  ctx.fillText("Land between the Posts for Points. The Bigger the Beach Ball the More Points You Get!", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (135 / 821)));
-  ctx.fillText("Press the spacebar to start a timed round", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (200 / 821)));
+  ctx.fillText("Land between the Posts for Points.", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (135 / 821)));
+  ctx.fillText("A Bigger Beach Ball Gives More Points!", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (165 / 821)));
+  ctx.fillText("Press the Spacebar to Start a Timed Round", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (230 / 821)));
   ctx.fillStyle = "blue";
-  ctx.fillRect((Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (200 / 821)), 587, 1);
+  ctx.fillRect((Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (230 / 821)), 610, 1);
   ctx.fillStyle = "black";
   // ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
   // ctx.fillText("larger/smaller (fine tuning) = q/x", 50, 200);
   ctx.fillText("Free Play:", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (300 / 821)))
-  ctx.fillText("Show Poles Again = l", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (340 / 821)))
-  ctx.fillText("New Poles = p", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (370 / 821)));
-  ctx.fillText("Reset Score = r", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (400 / 821)));
+  ctx.fillText("Show Poles Again = k", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (340 / 821)))
+  // ctx.fillText("New Poles = p", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (370 / 821)));
+  ctx.fillText("Reset Score = r", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (370 / 821)));
   // ctx.fillStyle = "yellow";
   // ctx.fillRect(1300, 200, 591, 2);
   if (this.timeUp === true) {
