@@ -18,11 +18,11 @@ Post.prototype.draw = function draw(ctx) {
         img1.src = 'https://i.pinimg.com/originals/5e/e7/5f/5ee75f45dfc654b7c86b20b7e4589593.jpg';
 
         if (this.game.ball[2].pos[0] === this.pos[0]) {
-            ctx.drawImage(img1, this.pos[0] - 20, this.pos[1] - 5, 20, 205);
+            ctx.drawImage(img1, this.pos[0] - 20, this.pos[1] - 5, 20, (Game.DIM_Y * (205 / 821)));
         }
 
         if (this.game.ball[3].pos[0] === this.pos[0]) {
-            ctx.drawImage(img1, this.pos[0], this.pos[1] - 5, 20, 205);
+            ctx.drawImage(img1, this.pos[0], this.pos[1] - 5, 20, (Game.DIM_Y * (205 / 821)));
         }
     }
 
@@ -74,7 +74,7 @@ Post.prototype.collideWith = function collideWith(otherObject) {
     oneScoreEl.innerHTML = `Hit Pole`
     otherObject.moving = false;
     otherObject.vel = [0, 0];
-    otherObject.pos = [720, 150];
+    otherObject.pos = [Game.DIM_X/2, (Game.DIM_Y * (150 / 821))];
     otherObject.radius = 10;
     this.changePosts();
     setTimeout(function () {
