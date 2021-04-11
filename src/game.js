@@ -23,7 +23,7 @@ Game.prototype.add = function add(object) {
 Game.prototype.addBall = function addBall() {
   const ball = new Ball({
 
-    pos: [720, 150],
+    pos: [(Game.DIM_X * (720 / 1440)), (Game.DIM_Y * (150 / 821))],
     game: this,
     vel: [0,0],
     radius: 10,
@@ -38,7 +38,7 @@ Game.prototype.addBall = function addBall() {
 Game.prototype.addFloor = function addFloor() {
   const floor = new Floor({
 
-    pos: [720, 711],
+    pos: [(Game.DIM_X * (720 / 1440)), (Game.DIM_Y * (711 / 821))],
     game: this,
     radius: 0,
     ctx: this.ctx
@@ -67,7 +67,7 @@ Game.prototype.addPost = function addPost() {
 
   const post1 = new Post({
 
-    pos: [first_x, 500],
+    pos: [first_x, (Game.DIM_Y * (500 / 821))],
     game: this,
     radius: 0,
     show: true,
@@ -79,7 +79,7 @@ Game.prototype.addPost = function addPost() {
 
   const post2 = new Post({
 
-    pos: [second_x, 500],
+    pos: [second_x, (Game.DIM_Y * (500 / 821))],
     game: this,
     radius: 0,
     show: true,
@@ -91,7 +91,7 @@ Game.prototype.addPost = function addPost() {
 
   const post3 = new Post({
 
-    pos: [third_x, 500],
+    pos: [third_x, (Game.DIM_Y * (500 / 821))],
     game: this,
     radius: 0,
     show: true,
@@ -103,7 +103,7 @@ Game.prototype.addPost = function addPost() {
 
   const post4 = new Post({
 
-    pos: [fourth_x, 500],
+    pos: [fourth_x, (Game.DIM_Y * (500 / 821))],
     game: this,
     radius: 0,
     show: true,
@@ -170,9 +170,11 @@ Game.prototype.draw = function draw(ctx) {
   // ctx.drawImage(img2, 0, Math.floor((675 / 1440) * Game.DIM_X), Game.DIM_X, Math.floor((25/789) * Game.DIM_Y));
   // ctx.drawImage(img3, 0, 0, Game.DIM_X, Math.floor((675/789) * Game.DIM_Y));
 
-  ctx.drawImage(img, 0, 700, 1440, 200);
-  ctx.drawImage(img2, 0, 675, 1440, 25);
-  ctx.drawImage(img3, 0, 0, 1440, 675);
+  ctx.drawImage(img, 0, (Game.DIM_Y * (700/821)), Game.DIM_X, (Game.DIM_Y*(200/821)));
+  // ctx.drawImage(img2, 0, 675, 1440, 25);
+  ctx.drawImage(img2, 0, (Game.DIM_Y * (675 / 821)), Game.DIM_X, (Game.DIM_Y * (25 / 821)));
+  // ctx.drawImage(img3, 0, 0, 1440, 675);
+  ctx.drawImage(img3, 0, 0, Game.DIM_X, (Game.DIM_Y * (675 / 821)));
 
   // ctx.drawImage(img2, 500, 500);
   // ctx.drawImage(img2, 1000, 500);
@@ -181,18 +183,18 @@ Game.prototype.draw = function draw(ctx) {
 
   ctx.font = "30px Comic Sans MS";
   ctx.fillStyle = "black";
-  ctx.fillText("Click and Hold to Inflate the Beach Ball Wherever You Click.", 50, 105);
-  ctx.fillText("Land between the Posts for Points. The Bigger the Beach Ball the More Points You Get!", 50, 135);
-  ctx.fillText("Press the spacebar to start a timed round" , 50, 200);
+  ctx.fillText("Click and Hold to Inflate the Beach Ball Wherever You Click.", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (105 / 821)));
+  ctx.fillText("Land between the Posts for Points. The Bigger the Beach Ball the More Points You Get!", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (135 / 821)));
+  ctx.fillText("Press the spacebar to start a timed round", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (200 / 821)));
   ctx.fillStyle = "blue";
-  ctx.fillRect(50, 200, 591, 1);
+  ctx.fillRect((Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (200 / 821)), (Game.DIM_X * (587 / 1440)), 1);
   ctx.fillStyle = "black";
   // ctx.fillText("left/right (fine tuning) = z/c", 50, 150);
   // ctx.fillText("larger/smaller (fine tuning) = q/x", 50, 200);
-  ctx.fillText("Free Play:", 50, 300)
-  ctx.fillText("Show Poles Again = l", 50, 340)
-  ctx.fillText("New Poles = p", 50, 370);
-  ctx.fillText("Reset Score = r", 50, 400);
+  ctx.fillText("Free Play:", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (300 / 821)))
+  ctx.fillText("Show Poles Again = l", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (340 / 821)))
+  ctx.fillText("New Poles = p", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (370 / 821)));
+  ctx.fillText("Reset Score = r", (Game.DIM_X * (50 / 1440)), (Game.DIM_Y * (400 / 821)));
   // ctx.fillStyle = "yellow";
   // ctx.fillRect(1300, 200, 591, 2);
   if (this.timeUp === true) {
