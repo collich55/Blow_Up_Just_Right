@@ -194,6 +194,13 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
     modal.style.display = "none";
+    post[0].show = true;
+    post[1].show = true;
+
+    setTimeout(function () {
+      post[0].show = false;
+      post[1].show = false;
+    }, 1000);
   }
 
   // When the user clicks anywhere outside of the modal, close it
