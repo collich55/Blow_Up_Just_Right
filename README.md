@@ -70,16 +70,17 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
 
 
 
-    let lower = this.game.objects[2].pos[0];
-    let higher = this.game.objects[3].pos[0];
+    let lower_pole_position = this.game.objects[2].pos[0];
+    let higher_pole_position = this.game.objects[3].pos[0];
+    let ball_diameter = this.game.objects[0].radius * 2;
     let that = this;
 
-    let total = higher - lower
-    let score = 100 - Math.floor((((total - (this.game.objects[0].radius * 2))/total) * 100))
+    let total = higher_pole_position - lower_pole_position
+    let score = 100 - Math.floor((((total - ball_diameter)/total) * 100))
     score = score.toString();
 
     if (otherObject.moving == true) {
-        if (otherObject.pos[0] < lower || otherObject.pos[0] > higher) {
+        if (otherObject.pos[0] < lower_pole_position || otherObject.pos[0] > higher_pole_position) {
             oneScoreEl.innerHTML = `Missed`
             that.game.objects[2].changePosts();
             setTimeout(function () {
@@ -89,7 +90,6 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
             that.game.onDrop = false;
         } else {
             this.score += parseInt(score);
-            
             this.one_score = score;
             scoreEl.innerHTML = `${this.score}`
             oneScoreEl.innerHTML = `${this.one_score}`
