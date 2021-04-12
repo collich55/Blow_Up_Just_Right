@@ -156,7 +156,6 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
   function pressingDown(e) {
     cancelAnimationFrame(timerID)
     e.preventDefault();
-    debugger
     // Start the timer
     ///console.log()()(isHold);
     if (that.game.onDrop === false && e.path[0].id === "canvas" && that.game.timeUp === false && e.button === 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild && counter === 0 && isHold === false) {
@@ -222,8 +221,7 @@ GameView.prototype.bindKeyHandlers = function bindKeyHandlers() {
 
     if (that.game.onDrop === false && e.path[0].id === "canvas" && that.game.timeUp === false && e.button === 0 && e.path[0].alt !== "icon" && !e.path[0].firstElementChild) {
     
-     debugger
-
+     
       
       isHold = false;
       // Stop the timer

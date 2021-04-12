@@ -179,7 +179,7 @@ Game.prototype.draw = function draw(ctx) {
   // ctx.drawImage(img2, 500, 500);
   // ctx.drawImage(img2, 1000, 500);
 
-  // debugger
+  
 
   ctx.font = "30px Comic Sans MS";
   ctx.fillStyle = "black";

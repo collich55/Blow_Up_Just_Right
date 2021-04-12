@@ -41,77 +41,52 @@ Floor.prototype.resetScore = function resetScore() {
     oneScoreEl.innerHTML = this.one_score;
 }
 
-
-// ((Math.abs(this.game.ball[2].pos[0] - this.game.ball[3].pos[0])) - this.game.ball[0].radius)
 Floor.prototype.collideWith = function collideWith(otherObject) {
 
-    
-    let lower;
-    let higher;
+
+
+    let lower_pole_position = this.game.ball[2].pos[0];
+    let higher_pole_position = this.game.ball[3].pos[0];
+    let ball_diameter = this.game.ball[0].radius * 2;
     let that = this;
-    
-    // setTimeout(function () {
-        if (this.game.ball[2].pos[0] < this.game.ball[3].pos[0]) {
-            lower = this.game.ball[2].pos[0];
-            higher = this.game.ball[3].pos[0];
+
+    let total = higher_pole_position - lower_pole_position
+    let score = 100 - Math.floor((((total - ball_diameter)/total) * 100))
+    score = score.toString();
+
+    if (otherObject.moving == true) {
+        if (otherObject.pos[0] < lower_pole_position || otherObject.pos[0] > higher_pole_position) {
+            oneScoreEl.innerHTML = `Missed`
+            that.game.ball[2].changePosts();
+            setTimeout(function () {
+                that.game.ball[2].show = false;
+                that.game.ball[3].show = false;
+            }, 1000)
+            that.game.onDrop = false;
         } else {
-            lower = this.game.ball[3].pos[0];
-            higher = this.game.ball[2].pos[0];
-        }
-        if (this.game.ball[0].pos[0] < lower) {
-            message = "You landed outside of the goal!"
+            this.score += parseInt(score);
+            
+            this.one_score = score;
+            scoreEl.innerHTML = `${this.score}`
+            oneScoreEl.innerHTML = `${this.one_score}`
+            that.game.ball[2].changePosts();
+            setTimeout(function () {
+                that.game.ball[2].show = false;
+                that.game.ball[3].show = false;
+            }, 1000)
             that.game.onDrop = false;
         }
-        let total = Math.abs(this.game.ball[2].pos[0] - this.game.ball[3].pos[0])
-        let score = ((Math.abs(this.game.ball[2].pos[0] - this.game.ball[3].pos[0])) - (this.game.ball[0].radius * 2));
-        score = score.toString();
-        
-        if (otherObject.moving !== false) {
-            if (this.game.ball[0].pos[0] < lower || this.game.ball[0].pos[0] > higher) {
-                // this.one_score = 0;
-                oneScoreEl.innerHTML = `Missed`
-                that.game.ball[2].changePosts();
-                setTimeout(function () {
-                    that.game.ball[2].show = false;
-                    that.game.ball[3].show = false;
-                }, 1000)
-                that.game.onDrop = false;
-                // Floor.flashyText();
-            } else {
-                
-                let num = ((100 - (((score) / total) * 100)))
-                this.score += Math.ceil(num);
-                this.one_score = Math.ceil(num);
-                scoreEl.innerHTML = `${this.score}`
-                oneScoreEl.innerHTML = `${this.one_score}`
-                that.game.ball[2].changePosts();
-                setTimeout(function () {
-                    that.game.ball[2].show = false;
-                    that.game.ball[3].show = false;
-                }, 1000)
-                that.game.onDrop = false;
-                
-                
-                
-                // ///console.log()()(this.game);
-                
-            }
-        }
-        
+    }
+
     otherObject.moving = false;
-    otherObject.vel = [0,0];
-    otherObject.pos = [720, 150];
+    otherObject.vel = [0, 0];
+    otherObject.pos = [innerWidth / 2, innerHeight * .18];
     otherObject.radius = 10;
-   
+
     this.game.ball[2].show = true;
     this.game.ball[3].show = true;
-   
-    
-
-    
-
-
 };
+
 
 Floor.prototype.isCollidedWith = function isCollidedWith(otherObject) {
     const centerDist = (otherObject.pos[1] + otherObject.radius) >= this.pos[1];
