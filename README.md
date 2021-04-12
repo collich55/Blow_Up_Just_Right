@@ -68,16 +68,18 @@ Post.prototype.changePosts = function changePosts() {
 ```Javascript
 Floor.prototype.collideWith = function collideWith(otherObject) {
 
+
+
     let lower = this.game.objects[2].pos[0];
     let higher = this.game.objects[3].pos[0];
     let that = this;
-        
+
     let total = higher - lower
-    let score = 100 - (total - (this.game.objects[0].radius * 2).floor);
+    let score = 100 - Math.floor((((total - (this.game.objects[0].radius * 2))/total) * 100))
     score = score.toString();
 
     if (otherObject.moving == true) {
-        if (otherObject < lower || otherObject > higher) {
+        if (otherObject.pos[0] < lower || otherObject.pos[0] > higher) {
             oneScoreEl.innerHTML = `Missed`
             that.game.objects[2].changePosts();
             setTimeout(function () {
@@ -86,7 +88,8 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
             }, 1000)
             that.game.onDrop = false;
         } else {
-            this.score += score
+            this.score += parseInt(score);
+            
             this.one_score = score;
             scoreEl.innerHTML = `${this.score}`
             oneScoreEl.innerHTML = `${this.one_score}`
@@ -95,15 +98,15 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
                 that.game.objects[2].show = false;
                 that.game.objects[3].show = false;
             }, 1000)
-            that.game.onDrop = false; 
+            that.game.onDrop = false;
         }
     }
-        
+
     otherObject.moving = false;
-    otherObject.vel = [0,0];
-    otherObject.pos = [innerWidth/2, innerWidth*.18];
+    otherObject.vel = [0, 0];
+    otherObject.pos = [innerWidth / 2, innerHeight * .18];
     otherObject.radius = 10;
-   
+
     this.game.objects[2].show = true;
     this.game.objects[3].show = true;
 };
