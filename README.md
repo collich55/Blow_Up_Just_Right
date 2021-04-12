@@ -69,10 +69,10 @@ The floor collision code checks for if the beach ball has landed between the pol
 
 ```Javascript
 Floor.prototype.collideWith = function collideWith(otherObject) {
-    let lower_pole_position = this.game.objects[2].pos[0];
-    let higher_pole_position = this.game.objects[3].pos[0];
-    let ball_diameter = this.game.objects[0].radius * 2;
-    let that = this;
+
+    let lower_pole_position = this.game.objects["post1"].pos[0];
+    let higher_pole_position = this.game.objects["post2"].pos[0];
+    let ball_diameter = this.game.objects["ball"].radius * 2;
 
     let total = higher_pole_position - lower_pole_position
     let score = 100 - Math.floor((((total - ball_diameter)/total) * 100))
@@ -81,23 +81,22 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
     if (otherObject.moving == true) {
         if (otherObject.pos[0] < lower_pole_position || otherObject.pos[0] > higher_pole_position) {
             oneScoreEl.innerHTML = `Missed`
-            that.game.objects[2].changePosts();
+            this.game.objects["post1"].changePosts();
             setTimeout(function () {
-                that.game.objects[2].show = false;
-                that.game.objects[3].show = false;
+                Post.show = false;
             }, 1000)
-            that.game.onDrop = false;
+            this.game.onDrop = false;
         } else {
             this.score += parseInt(score);
+            
             this.one_score = score;
             scoreEl.innerHTML = `${this.score}`
             oneScoreEl.innerHTML = `${this.one_score}`
-            that.game.objects[2].changePosts();
+            this.game.objects["post1"].changePosts();
             setTimeout(function () {
-                that.game.objects[2].show = false;
-                that.game.objects[3].show = false;
+                Post.show = false
             }, 1000)
-            that.game.onDrop = false;
+            this.game.onDrop = false;
         }
     }
 
@@ -106,7 +105,6 @@ Floor.prototype.collideWith = function collideWith(otherObject) {
     otherObject.pos = [innerWidth / 2, innerHeight * .18];
     otherObject.radius = 10;
 
-    this.game.objects[2].show = true;
-    this.game.objects[3].show = true;
+    Post.show = true;
 };
 ```
