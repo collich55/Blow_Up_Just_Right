@@ -30,7 +30,7 @@ Since these "poles" are actually just lines, I added two additional lines of the
 ```Javascript
 
 Post.prototype.randomX = function randomX() {
-    return ((innerWidth * .7 * Math.random()) + (innerWidth * .04))
+    return ((innerWidth * .65 * Math.random())+ (innerWidth*.04))
 };
 
 
@@ -45,21 +45,18 @@ Post.prototype.changePosts = function changePosts() {
     third_x = first_x - 20;
     fourth_x = second_x + 20;
 
-    this.game.objects[2].pos[0] = first_x;
-    this.game.objects[3].pos[0] = second_x;
-    this.game.objects[4].pos[0] = third_x;
-    this.game.objects[5].pos[0] = fourth_x;
+    this.game.objects["post1"].pos[0] = first_x;
+    this.game.objects["post2"].pos[0] = second_x;
+    this.game.objects["post3"].pos[0] = third_x;
+    this.game.objects["post4"].pos[0] = fourth_x;
 
-    this.game.objects[2].show = true;
-    this.game.objects[3].show = true;
-
+    that.game.objects["post1"].show = true;
+    that.game.objects["post2"].show = true;
 
     setTimeout(function () {
-        that.game.objects[2].show = false;
-        that.game.objects[3].show = false;
+        that.game.objects["post1"].show = false;
+        that.game.objects["post2"].show = false;
     }, 1000) 
-
-    
 };
 ```
 
