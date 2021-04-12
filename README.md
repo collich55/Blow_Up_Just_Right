@@ -50,8 +50,8 @@ Post.prototype.changePosts = function changePosts() {
     this.game.objects["post3"].pos[0] = third_x;
     this.game.objects["post4"].pos[0] = fourth_x;
 
-    that.game.objects["post1"].show = true;
-    that.game.objects["post2"].show = true;
+    this.game.objects["post1"].show = true;
+    this.game.objects["post2"].show = true;
 
     setTimeout(function () {
         that.game.objects["post1"].show = false;
