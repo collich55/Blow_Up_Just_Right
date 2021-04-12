@@ -67,9 +67,6 @@ Post.prototype.changePosts = function changePosts() {
 
 ```Javascript
 Floor.prototype.collideWith = function collideWith(otherObject) {
-
-
-
     let lower_pole_position = this.game.objects[2].pos[0];
     let higher_pole_position = this.game.objects[3].pos[0];
     let ball_diameter = this.game.objects[0].radius * 2;
