@@ -68,71 +68,43 @@ Post.prototype.changePosts = function changePosts() {
 ```Javascript
 Floor.prototype.collideWith = function collideWith(otherObject) {
 
-    
-    let lower;
-    let higher;
+    let lower = this.game.objects[2].pos[0];
+    let higher = this.game.objects[3].pos[0];
     let that = this;
-    
-    // setTimeout(function () {
-        if (this.game.objects[2].pos[0] < this.game.objects[3].pos[0]) {
-            lower = this.game.objects[2].pos[0];
-            higher = this.game.objects[3].pos[0];
-        } else {
-            lower = this.game.objects[3].pos[0];
-            higher = this.game.objects[2].pos[0];
-        }
-        if (this.game.objects[0].pos[0] < lower) {
-            message = "You landed outside of the goal!"
-            that.game.onDrop = false;
-        }
-        let total = Math.abs(this.game.objects[2].pos[0] - this.game.objects[3].pos[0])
-        let score = ((Math.abs(this.game.objects[2].pos[0] - this.game.objects[3].pos[0])) - (this.game.objects[0].radius * 2));
-        score = score.toString();
         
-        if (otherObject.moving !== false) {
-            if (this.game.objects[0].pos[0] < lower || this.game.objects[0].pos[0] > higher) {
-                // this.one_score = 0;
-                oneScoreEl.innerHTML = `Missed`
-                that.game.objects[2].changePosts();
-                setTimeout(function () {
-                    that.game.objects[2].show = false;
-                    that.game.objects[3].show = false;
-                }, 1000)
-                that.game.onDrop = false;
-                // Floor.flashyText();
-            } else {
-                
-                let num = ((100 - (((score) / total) * 100)))
-                this.score += Math.ceil(num);
-                this.one_score = Math.ceil(num);
-                scoreEl.innerHTML = `${this.score}`
-                oneScoreEl.innerHTML = `${this.one_score}`
-                that.game.objects[2].changePosts();
-                setTimeout(function () {
-                    that.game.objects[2].show = false;
-                    that.game.objects[3].show = false;
-                }, 1000)
-                that.game.onDrop = false;
-                
-                
-                
-                // ///console.log()()(this.game);
-                
-            }
+    let total = higher - lower
+    let score = 100 - (total - (this.game.objects[0].radius * 2).floor);
+    score = score.toString();
+
+    if (otherObject.moving == true) {
+        if (otherObject < lower || otherObject > higher) {
+            oneScoreEl.innerHTML = `Missed`
+            that.game.objects[2].changePosts();
+            setTimeout(function () {
+                that.game.objects[2].show = false;
+                that.game.objects[3].show = false;
+            }, 1000)
+            that.game.onDrop = false;
+        } else {
+            this.score += score
+            this.one_score = score;
+            scoreEl.innerHTML = `${this.score}`
+            oneScoreEl.innerHTML = `${this.one_score}`
+            that.game.objects[2].changePosts();
+            setTimeout(function () {
+                that.game.objects[2].show = false;
+                that.game.objects[3].show = false;
+            }, 1000)
+            that.game.onDrop = false; 
         }
+    }
         
     otherObject.moving = false;
     otherObject.vel = [0,0];
-    otherObject.pos = [720, 150];
+    otherObject.pos = [innerWidth/2, innerWidth*.18];
     otherObject.radius = 10;
    
     this.game.objects[2].show = true;
     this.game.objects[3].show = true;
-   
-    
-
-    
-
-
 };
 ```
