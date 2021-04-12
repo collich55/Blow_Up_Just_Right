@@ -6,6 +6,7 @@ const Util = require("./util");
 function Game(ctx) {
   this.ctx = ctx;
   this.ball = [];
+  this.objects = {};
   this.timeUp = false;
   this.onDrop = false;
   this.newRecord = false;
@@ -16,8 +17,9 @@ Game.BG_COLOR = "#c2b280";
 Game.DIM_X = innerWidth;
 Game.DIM_Y = innerHeight;
 
-Game.prototype.add = function add(object) {
+Game.prototype.add = function add(object, name) {
   this.ball.push(object);
+  this.objects[name] = this.ball[this.ball.length - 1];
 };
 
 Game.prototype.addBall = function addBall() {
@@ -30,7 +32,7 @@ Game.prototype.addBall = function addBall() {
     color: "red"
   });
 
-  this.add(ball);
+  this.add(ball, "ball");
 
   return ball;
 };
@@ -46,7 +48,7 @@ Game.prototype.addFloor = function addFloor() {
 
   });
 
-  this.add(floor);
+  this.add(floor, "floor");
 
   return floor;
 };
@@ -75,7 +77,7 @@ Game.prototype.addPost = function addPost() {
 
   });
 
-  this.add(post1);
+  this.add(post1, "post1");
 
   const post2 = new Post({
 
@@ -87,7 +89,7 @@ Game.prototype.addPost = function addPost() {
 
   });
 
-  this.add(post2);
+  this.add(post2, "post2");
 
   const post3 = new Post({
 
@@ -99,7 +101,7 @@ Game.prototype.addPost = function addPost() {
 
   });
 
-  this.add(post3);
+  this.add(post3, "post3");
 
   const post4 = new Post({
 
@@ -111,7 +113,7 @@ Game.prototype.addPost = function addPost() {
 
   });
 
-  this.add(post4);
+  this.add(post4, "post4");
 
   return [post1, post2, post3, post4];
 };
