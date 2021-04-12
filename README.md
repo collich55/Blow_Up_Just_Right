@@ -65,6 +65,8 @@ Post.prototype.changePosts = function changePosts() {
 
 ## Floor Collision Code
 
+The floor collision code checks for if the beach ball has landed between the poles and appropiately displays the score of "missed" if this is the case. If the ball has landed between the poles it calculates what percent of the space between the poles you managed to occupy with the ball and displays that number as points. At the end of either scenario we changes the poles to a new location and show them for 1 second using setTimeout and toggling a 'show' property given to the poles that determines their visibility.
+
 ```Javascript
 Floor.prototype.collideWith = function collideWith(otherObject) {
     let lower_pole_position = this.game.objects[2].pos[0];
